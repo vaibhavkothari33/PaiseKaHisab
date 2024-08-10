@@ -28,9 +28,13 @@
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19V6m-7 7l7-7 7 7"/></svg>
         <span class="text-xs">Home</span>
       </a>
+      <a href="home.html" class="text-gray-600 flex flex-col items-center">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="https://google.com/favicon.ico"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        <span class="text-xs">Lend</span>
+      </a>
       <a href="#loan-lend" class="text-gray-600 flex flex-col items-center">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-        <span class="text-xs">Loan/Lend</span>
+        <span class="text-xs">Expenses</span>
       </a>
       <a href="#savings" class="text-gray-600 flex flex-col items-center">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
@@ -54,6 +58,9 @@
           <a href="#home" class="block py-2 px-4 hover:bg-gray-200">Home</a>
         </li>
         <li>
+          <a href="#home" class="block py-2 px-4 hover:bg-gray-200">Add money</a>
+        </li>
+        <li>
           <a href="#loan-lend" class="block py-2 px-4 hover:bg-gray-200">Loan/Lend</a>
         </li>
         <li>
@@ -67,12 +74,12 @@
   </nav>
 
   <!-- Floating Action Button for Mobile -->
-  <button id="fab" class="fixed bottom-6 right-6 bg-green-500 text-white rounded-full p-4 shadow-lg hover:bg-green-600 focus:outline-none">
+  <!-- <button id="fab" class="fixed bottom-6 right-6 bg-green-500 text-white rounded-full p-4 shadow-lg hover:bg-green-600 focus:outline-none">
     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19v-6m0 0V5m0 0h-6m6 0h6"/></svg>
-  </button>
+  </button> -->
 
   <!-- Additional Options for FAB -->
-  <div id="fab-options" class="fixed bottom-24 right-6 space-y-2 flex flex-col items-center hidden">
+  <!-- <div id="fab-options" class="fixed bottom-24 right-6 space-y-2 flex flex-col items-center ">
     <button class="bg-white text-gray-800 p-3 rounded-full shadow-md hover:bg-gray-200">
       Food
     </button>
@@ -85,7 +92,7 @@
     <button class="bg-white text-gray-800 p-3 rounded-full shadow-md hover:bg-gray-200">
       Others
     </button>
-  </div>
+  </div> -->
 
   <script>
     // Initialize Chart.js
@@ -96,7 +103,7 @@
         labels: ['Food', 'Shopping', 'Rent', 'Others'],
         datasets: [{
           label: 'Spending',
-          data: [300, 200, 400, 100], // Example data
+          data: [20, 30, 40, 0], // Example data
           backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0'],
         }]
       },
