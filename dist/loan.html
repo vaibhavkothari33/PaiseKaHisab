@@ -1,11 +1,127 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Main Dashboard</title>
+  <link rel="stylesheet" href="output.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-<body>
+<body class="bg-black flex flex-col min-h-screen">
+
+  <!-- Main Content -->
+  <main class="flex-1 p-4">
+    <h1 class="text-2xl font-bold mb-4 text-white">PaiseKaHisab</h1>
+    <p class="text-white mb-8">Here you can manage your finances, view loans, track savings, and update your profile.</p>
     
+    <!-- Pie Chart Container -->
+    <div class="bg-white p-4 rounded-lg shadow-md">
+      <canvas id="spendingChart" class="w-full h-64"></canvas>
+    </div>
+  </main>
+
+  <!-- Bottom Nav for Mobile -->
+  <nav class="fixed bottom-0 left-0 w-full bg-white border-t border-gray-200 md:hidden">
+    <div class="flex justify-around items-center p-2">
+      <a href="#home" class="text-gray-600 flex flex-col items-center">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19V6m-7 7l7-7 7 7"/></svg>
+        <span class="text-xs">Home</span>
+      </a>
+      <a href="#loan-lend" class="text-gray-600 flex flex-col items-center">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        <span class="text-xs">Loan/Lend</span>
+      </a>
+      <a href="#savings" class="text-gray-600 flex flex-col items-center">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+        <span class="text-xs">Savings</span>
+      </a>
+      <a href="#profile" class="text-gray-600 flex flex-col items-center">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-9m-9 0v10m0 0H3m9-10V3m0 0h-9"/></svg>
+        <span class="text-xs">Profile</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- Top Nav for Tablet and Desktop -->
+  <nav class="hidden md:flex md:flex-col md:w-64 md:bg-white md:shadow-md md:h-full">
+    <div class="flex flex-col h-full">
+      <div class="p-4">
+        <h2 class="text-xl font-bold">Dashboard</h2>
+      </div>
+      <ul class="flex-1">
+        <li>
+          <a href="#home" class="block py-2 px-4 hover:bg-gray-200">Home</a>
+        </li>
+        <li>
+          <a href="#loan-lend" class="block py-2 px-4 hover:bg-gray-200">Loan/Lend</a>
+        </li>
+        <li>
+          <a href="#savings" class="block py-2 px-4 hover:bg-gray-200">Savings</a>
+        </li>
+        <li>
+          <a href="#profile" class="block py-2 px-4 hover:bg-gray-200">Profile</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Floating Action Button for Mobile -->
+  <button id="fab" class="fixed bottom-6 right-6 bg-green-500 text-white rounded-full p-4 shadow-lg hover:bg-green-600 focus:outline-none">
+    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19v-6m0 0V5m0 0h-6m6 0h6"/></svg>
+  </button>
+
+  <!-- Additional Options for FAB -->
+  <div id="fab-options" class="fixed bottom-24 right-6 space-y-2 flex flex-col items-center hidden">
+    <button class="bg-white text-gray-800 p-3 rounded-full shadow-md hover:bg-gray-200">
+      Food
+    </button>
+    <button class="bg-white text-gray-800 p-3 rounded-full shadow-md hover:bg-gray-200">
+      Shopping
+    </button>
+    <button class="bg-white text-gray-800 p-3 rounded-full shadow-md hover:bg-gray-200">
+      Rent
+    </button>
+    <button class="bg-white text-gray-800 p-3 rounded-full shadow-md hover:bg-gray-200">
+      Others
+    </button>
+  </div>
+
+  <script>
+    // Initialize Chart.js
+    const ctx = document.getElementById('spendingChart').getContext('2d');
+    const spendingChart = new Chart(ctx, {
+      type: 'pie',
+      data: {
+        labels: ['Food', 'Shopping', 'Rent', 'Others'],
+        datasets: [{
+          label: 'Spending',
+          data: [300, 200, 400, 100], // Example data
+          backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0'],
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            position: 'top',
+          },
+          tooltip: {
+            callbacks: {
+              label: function(tooltipItem) {
+                return `${tooltipItem.label}: $${tooltipItem.raw}`;
+              }
+            }
+          }
+        }
+      }
+    });
+
+    // Floating Action Button (FAB) Toggle Script
+    document.getElementById('fab').addEventListener('click', function() {
+      const options = document.getElementById('fab-options');
+      options.classList.toggle('hidden');
+    });
+  </script>
 </body>
 </html>
