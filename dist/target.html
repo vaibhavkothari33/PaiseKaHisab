@@ -3,43 +3,63 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Track Your Expenses</title>
+  <title>Main Dashboard</title>
   <link rel="stylesheet" href="output.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-black flex flex-col items-center justify-center min-h-screen p-4">
-  <h1 class="text-white font-bold text-2xl text-center mb-4 md:text-3xl">
-    Track your expenses with ease.
-  </h1>
-  <h2 class="text-white font-bold text-xl text-center mb-8 md:text-2xl">
-    Get your free account
-  </h2>
+<body class="bg-black flex flex-col min-h-screen">
   
-  <!-- Buttons Container -->
-  <div class="w-full max-w-md flex flex-col md:flex-row md:gap-4">
-    <button
-      class="flex items-center justify-center w-full mb-4 md:mb-0 p-3 bg-white text-black rounded-md gap-x-2 text-sm font-medium border border-gray-300 hover:border-gray-500 focus:outline-none focus:border-gray-500"
-    >
-      <img
-        src="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png"
-        alt="Google logo"
-        class="w-5 h-5"
-      />
-      Sign in with Google
-    </button>
-    <button
-      class="flex items-center justify-center w-full p-3 bg-white text-black rounded-md gap-x-2 text-sm font-medium border border-gray-300 hover:border-gray-500 focus:outline-none focus:border-gray-500"
-    >
-      <img
-        src="https://github.com/favicon.ico"
-        alt="Github logo"
-        class="w-5 h-5"
-      />
-      Sign in with GitHub
-    </button>
-  </div>
-  
-  <h2 class="text-white font-bold text-sm text-center mt-12">
-    Already have an account? <span class="text-green-400">Log in</span>
-  </h2>
+  <!-- Main Content -->
+  <main class="flex-1 p-4">
+    <h1 class="text-2xl font-bold mb-4 text-white">PaiseKaHisab</h1>
+    <p class="text-white">Here you can manage your finances, view loans, track savings, and update your profile.</p>
+    <!-- Add more content here -->
+  </main>
+
+  <!-- Bottom Nav for Mobile -->
+  <nav class="fixed bottom-0 left-0 w-full bg-white border-t border-gray-200 md:hidden">
+    <div class="flex justify-around items-center p-2">
+      <a href="#home" class="text-gray-600 flex flex-col items-center">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19V6m-7 7l7-7 7 7"/></svg>
+        <span class="text-xs">Home</span>
+      </a>
+      <a href="#loan-lend" class="text-gray-600 flex flex-col items-center">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        <span class="text-xs">Loan/Lend</span>
+      </a>
+      <a href="#savings" class="text-gray-600 flex flex-col items-center">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+        <span class="text-xs">Savings</span>
+      </a>
+      <a href="#profile" class="text-gray-600 flex flex-col items-center">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-9m-9 0v10m0 0H3m9-10V3m0 0h-9"/></svg>
+        <span class="text-xs">Profile</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- Top Nav for Tablet and Desktop -->
+  <nav class="hidden md:flex md:flex-col md:w-64 md:bg-white md:shadow-md md:h-full">
+    <div class="flex flex-col h-full">
+      <div class="p-4">
+        <h2 class="text-xl font-bold">Dashboard</h2>
+      </div>
+      <ul class="flex-1">
+        <li>
+          <a href="#home" class="block py-2 px-4 hover:bg-gray-200">Home</a>
+        </li>
+        <li>
+          <a href="#loan-lend" class="block py-2 px-4 hover:bg-gray-200">Loan/Lend</a>
+        </li>
+        <li>
+          <a href="#savings" class="block py-2 px-4 hover:bg-gray-200">Savings</a>
+        </li>
+        <li>
+          <a href="#profile" class="block py-2 px-4 hover:bg-gray-200">Profile</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
 </body>
 </html>
