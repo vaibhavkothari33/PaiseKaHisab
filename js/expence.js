@@ -25,8 +25,8 @@ function updateTransactionTable() {
         const transactionRow = document.createElement('tr');
 
         transactionRow.innerHTML = `
+        <td class="border px-4 py-2">${transaction.date} </td>
             <td class="border px-4 py-2">${transaction.category}</td>
-            <td class="border px-4 py-2">${transaction.date} </td>
             <td class="border px-4 py-2">${transaction.amount}</td>
         `;
 
