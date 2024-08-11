@@ -1,6 +1,6 @@
 # Money Tracker Web Application
 
-Welcome to the **Money Tracker** web application! This application is designed to help you manage your finances, track your expenses, and gain insights into your spending habits. Below is an overview of the features and functionalities of the app.
+Welcome to the **PaiseKaHisab** web application! This application is designed to help you manage your finances, track your expenses, and gain insights into your spending habits. Below is an overview of the features and functionalities of the app.
 
 ## Features
 
