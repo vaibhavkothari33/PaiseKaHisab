@@ -109,7 +109,7 @@ I appreciate your contributions and will review your pull requests as soon as po
 
 ## Contact
 
-For any questions, feedback, or support regarding this project, please reach out to us on LinkedIn:
+For any questions, feedback, or support regarding this project, please reach out to me on LinkedIn:
 
 - **LinkedIn:** [vaibhavkothari33](https://www.linkedin.com/in/vaibhavkothari33)
 
