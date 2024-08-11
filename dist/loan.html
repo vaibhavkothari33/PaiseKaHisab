@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="output.css" />
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="shortcut icon" type="x-icon" href="./images/money.png">
+    <script defer type="module"  src="../js/login3.js"></script>
+    <script defer type="module" src="../js/login.js"></script>
+    <link rel="stylesheet" href="../src/login.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer">
@@ -66,7 +69,9 @@
           <span class="text-xs">Savings</span>
         </a>
         <a href="profile.html" class="text-gray-400 flex flex-col items-center">
-          <i class="fa-solid fa-user p-2"></i>
+          <div id="google-sign">
+            <img id="userProfilePicture" >
+            </div>
           <span class="text-xs">Profile</span>
         </a>
       </div> 

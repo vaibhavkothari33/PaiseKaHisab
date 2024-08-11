@@ -8,6 +8,11 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="shortcut icon" type="x-icon" href="./images/money.png">
+
+    <script defer type="module"  src="../js/login2.js"></script>
+    <script defer type="module" src="../js/login.js"></script>
+    <link rel="stylesheet" href="../src/login.css">
+
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
@@ -15,26 +20,31 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"/>
   </head>
+ 
   <body class="bg-gray-900 flex flex-col min-h-screen">
     <!-- Main Content -->
     <div class="container mx-auto p-4">
       <!-- App Details Section -->
       <div class="mb-8">
-          <h1 class="text-4xl font-bold flex justify-center text-white mb-4">Welcome to</h1>
-          <h2 class="text-3xl text-white flex justify-center italic font-bold mb-4">PaiseKaHisab</h2>
-          <p class="text-lg pt-9 text-white">
+          <h1 class="text-3xl font-bold flex justify-center text-white mb-4">Hey,<p id="userName"></p></h1>
+          <h2 class="text-2xl text-white flex justify-center italic font-bold mb-4">Ready to keep your</h2>
+          <h2 class="text-2xl text-white flex justify-center italic font-bold mb-4">PaiseKaHisab</h2>
+          <!-- <p class="text-lg pt-9 text-white">
               This app helps you track your expenses, manage your finances, and keep an eye on your spending habits.
               Easily categorize your expenses, <strong>visualize them with a pie chart</strong>, and view your transaction history all in one place.
-          </p>
+          </p> -->
       </div>
+
   
       <!-- Financial Advice Section -->
-      <div id="financialAdvice" class="p-4 bg-gray-100 rounded mb-20 shadow-md">
+      <div id="financialAdvice" class="pt-4 pl-4 pr-4 bg-gray-100 rounded mb-20 shadow-md">
           <h2 class="text-2xl font-semibold  italic mb-4">Financial Advice 101 </h2>
           <p id="adviceText" class="text-lg italic"></p><br>
-          <h2 class="text-sm font-semibold  italic mb-4">Who said it was Financial </h2>
+          <h2 class="text-sm font-semibold  italic mb-1">Who said it was Financial </h2>
       </div>
   </div>
+  <!-- <div class="flex text-white text-xl justify-center pb-4">Initial-Amount: 5000</div>
+  <div class="flex text-white text-xl justify-center pb-10">Amount-Remaining: 2000</div> -->
   <div class="flex justify-center text-white text-2xl font-bold mb-4">Made with ❤️ and no 💸</div>
   <div class="flex justify-center text-white text-2xl font-bold pb-24 italic">by Vaibhav Kothari</div>
     <!-- Bottom Nav for Mobile -->
@@ -57,9 +67,13 @@
           <span class="text-xs">Savings</span>
         </a>
         <a href="profile.html" class="text-gray-400 flex flex-col items-center">
-          <i class="fa-solid fa-user p-2"></i>
+        
+            <img id="userProfilePicture" >
+           
           <span class="text-xs">Profile</span>
         </a>
+        <!-- <div id="google-login1"> -->
+          
       </div>
     </nav>
 
