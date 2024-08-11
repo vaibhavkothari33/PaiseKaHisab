@@ -1,17 +1,19 @@
-   // Data storage
-   let expenses = {
+// Data storage
+let expenses = {
+    food: 0,
+    tuck: 0,
     shopping: 0,
-    rent: 0,
-    school: 0,
-    food: 0
+    travel: 0,
+    lend: 0,
+    others: 0
   };
-
+  
   let chart;
-
+  
   // Function to initialize or update the chart
   function updateChart() {
     const ctx = document.getElementById("expensesChart").getContext("2d");
-
+  
     if (chart) {
       // Update existing chart
       chart.data.labels = Object.keys(expenses);
@@ -26,7 +28,14 @@
           datasets: [
             {
               data: Object.values(expenses),
-              backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56", "#4BC0C0"]
+              backgroundColor: [
+                "#EF4444", // Red for Food
+                "#3B82F6", // Blue for Tuck Shop
+                "#F97316", // Orange for Shopping
+                "#FBBF24", // Yellow for Travel
+                "#EC4899", // Pink for Lend
+                "#16A34A"  // Green for Others
+              ]
             }
           ]
         },
@@ -48,13 +57,13 @@
       });
     }
   }
-
+  
   // Event listeners
   document.querySelectorAll('.category').forEach(category => {
     category.addEventListener('click', function () {
       const categoryName = this.id;
       const amount = parseFloat(document.getElementById("expenseAmount").value);
-
+  
       if (!isNaN(amount) && amount > 0) {
         expenses[categoryName] += amount;
         localStorage.setItem('expenses', JSON.stringify(expenses));
@@ -65,7 +74,7 @@
       }
     });
   });
-
+  
   // Load saved expenses on page load
   window.addEventListener('load', () => {
     const savedExpenses = JSON.parse(localStorage.getItem('expenses'));
@@ -74,3 +83,4 @@
     }
     updateChart();
   });
+  
