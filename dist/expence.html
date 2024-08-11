@@ -17,10 +17,9 @@
     <main class="flex-1 p-4">
       <!-- Input Section -->
       <div class="mb-6">
-        <h2 class="text-sm flex justify-center font-semibold text-white mb-4">Add an Expense</h2>
+        <!-- <h2 class="text-sm flex justify-center font-semibold text-white mb-4">Add an Expense</h2> -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
           <input type="number" id="expenseAmount" class="p-2 rounded-md text-black" placeholder="Enter amount" />
-          <!-- <button id="addExpense" class="p-2 bg-green-500 hover:bg-green-600 rounded-md text-white">Add Expense</button> -->
         </div>
       </div>
 
@@ -48,10 +47,28 @@
       </div>
   
       <!-- Chart -->
-      <div class="mt-6 pb-36">
+      <div class="mt-6 pb-9">
         <canvas id="expensesChart"></canvas>
       </div>
     </main>
+    
+    <h2 class="text-lg font-semibold flex justify-center text-white mb-4">Transaction History</h2>
+    <table id="transactionTable" class="min-w-full mb-20 bg-gray-800 text-white">
+      <thead>
+        <tr>
+          <th class="px-4 py-2">Category</th>
+          <th class="px-4 py-2">Date</th>
+          <!-- <th class="px-4 py-2">Time</th> -->
+          <th class="px-4 py-2">Amount (rupee)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Transactions will be dynamically added here -->
+      </tbody>
+    </table>
+ 
+  <button id="delExpense" class="mb-16 bg-green-500 hover:bg-green-600 rounded-md text-white">Delete Expense</button>
+
 
     <!-- Bottom Nav for Mobile -->
     <nav class="fixed bottom-0 left-0 right-0 bg-gray-800 z-50">

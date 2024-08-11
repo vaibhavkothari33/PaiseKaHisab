@@ -16,21 +16,24 @@
   </head>
   <body class="bg-gray-900 flex flex-col min-h-screen">
     <!-- Main Content -->
-    <main class="flex-1 p-4">
-      <h1
-        class="text-2xl font-bold mb-4 flex justify-center text-center text-white"
-      >
-        PaiseKaHisab
-      </h1>
-      <p class="text-white mb-8">
-        Here you can manage your finances, view loans, track savings, and update
-        your profile.
-      </p>
-    </main>
-    <h1 class="text-2xl font-bold mt-4 mb-6">Expense Overview</h1>
-    <div class="w-full max-w-3xl p-4">
-      <canvas id="expenseChart"></canvas>
-    </div>
+    <div class="container mx-auto p-4">
+      <!-- App Details Section -->
+      <div class="mb-8">
+          <h1 class="text-4xl font-bold flex justify-center text-white mb-4">Welcome to</h1>
+          <h2 class="text-3xl text-white flex justify-center italic font-bold mb-4">PaiseKaHisab</h2>
+          <p class="text-lg pt-9 text-white">
+              This app helps you track your expenses, manage your finances, and keep an eye on your spending habits.
+              Easily categorize your expenses, <strong>visualize them with a pie chart</strong>, and view your transaction history all in one place.
+          </p>
+      </div>
+  
+      <!-- Financial Advice Section -->
+      <div id="financialAdvice" class="p-4 bg-gray-100 rounded mb-20 shadow-md">
+          <h2 class="text-2xl font-semibold  italic mb-4">Financial Advice </h2>
+          <p id="adviceText" class="text-lg italic"></p>
+      </div>
+  </div>
+  
     <!-- Bottom Nav for Mobile -->
     <nav class="fixed bottom-0 left-0 right-0 bg-gray-800 z-50">
       <div class="flex justify-around items-center p-2">
@@ -57,54 +60,22 @@
       </div>
     </nav>
 
-    <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        // Retrieve the expense data from local storage
-        const expenseData =
-          JSON.parse(localStorage.getItem("expenseData")) || {};
+   <script>
+    // Function to fetch random financial advice
+async function fetchFinancialAdvice() {
+    try {
+        const response = await fetch('https://api.adviceslip.com/advice');
+        const data = await response.json();
+        document.getElementById('adviceText').innerText = `"${data.slip.advice}"`;
+    } catch (error) {
+        console.error('Error fetching financial advice:', error);
+        document.getElementById('adviceText').innerText = 'Sorry, we could not load the advice at this time.';
+    }
+}
 
-        // Prepare data for Chart.js
-        const labels = Object.keys(expenseData);
-        const data = Object.values(expenseData);
+// Fetch advice when the page loads
+window.addEventListener('load', fetchFinancialAdvice);
 
-        const ctx = document.getElementById("expenseChart").getContext("2d");
-        new Chart(ctx, {
-          type: "pie",
-          data: {
-            labels: labels.length ? labels : ["No Data"],
-            datasets: [
-              {
-                data: data.length ? data : [1],
-                backgroundColor: [
-                  "#FF6384",
-                  "#36A2EB",
-                  "#FFCE56",
-                  "#4BC0C0",
-                  "#FF9F40",
-                  "#C9CBCF",
-                ],
-                borderColor: "#ffffff",
-                borderWidth: 1,
-              },
-            ],
-          },
-          options: {
-            responsive: true,
-            plugins: {
-              legend: {
-                position: "top",
-              },
-              tooltip: {
-                callbacks: {
-                  label: function (tooltipItem) {
-                    return `${tooltipItem.label}: $${tooltipItem.raw}`;
-                  },
-                },
-              },
-            },
-          },
-        });
-      });
-    </script>
+   </script>
   </body>
 </html>
