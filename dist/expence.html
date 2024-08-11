@@ -1,117 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Main Dashboard</title>
-  <link rel="stylesheet" href="output.css" />
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-</head>
-<body class="bg-black flex flex-col min-h-screen">
-
-  <!-- Main Content -->
-  <main class="flex-1 p-4">
-    <h1 class="text-2xl font-bold mb-4 flex justify-center text-center text-white">PaiseKaHisab</h1>
-    <p class="text-white mb-8">Here you can manage your finances, view loans, track savings, and update your profile.</p>
-    
-    <!-- Pie Chart Container -->
-    <div class=" p-4 rounded-lg shadow-md">
-      <canvas id="spendingChart" class="w-full h-64"></canvas>
-    </div>
-  </main>
-
-  <!-- Bottom Nav for Mobile -->
-  <nav class="fixed bottom-0 left-0 w-full border-t border-gray-200 md:hidden">
-    <div class="flex justify-around items-center p-2">
-      <a href="home.html" class="text-gray-600 flex flex-col items-center"><i class="fa-solid fa-house p-2"></i>
-        <!-- <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19V6m-7 7l7-7 7 7"/></svg> -->
-        <span class="text-xs">Home</span>
-      </a>
-      <a href="loan.html" class="text-gray-600 flex flex-col items-center">
-        <i class="fa-solid fa-landmark p-2"></i>
-        <span class="text-xs">Lend</span>
-      </a>
-      <a href="expence.html" class="text-gray-600 flex flex-col items-center"><i class="fa-solid fa-money-check-dollar p-2"></i>
-        <!-- <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg> -->
-        <span class="text-xs">Expenses</span>
-      </a>
-      <a href="savings.html" class="text-gray-600 flex flex-col items-center">
-        <!-- <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> -->
-        <i class="fa-solid fa-piggy-bank p-2"></i>
-        <span class="text-xs">Savings</span>
-      </a>
-      <a href="profile.html" class="text-gray-600 flex flex-col items-center">
-        <!-- <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-9m-9 0v10m0 0H3m9-10V3m0 0h-9"/></svg> -->
-        <i class="fa-solid fa-user p-2"></i>
-        <span class="text-xs">Profile</span>
-      </a>
-    </div>
-  </nav>
-
-  <!-- Top Nav for Tablet and Desktop -->
-  <nav class="hidden md:flex md:flex-col md:w-64 md:bg-white md:shadow-md md:h-full">
-    <div class="flex flex-col h-full">
-      <div class="p-4">
-        <h2 class="text-xl font-bold">Dashboard</h2>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Expenses</title>
+    <link rel="stylesheet" href="output.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="output.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  </head>
+  <body class="bg-gray-900 flex flex-col min-h-screen">
+    <h1 class="text-2xl font-serif mb-4 mt-4 flex justify-center text-center text-white">
+      Expenses
+    </h1>
+    <main class="flex-1 p-4">
+      <!-- Input Section -->
+      <div class="mb-6">
+        <h2 class="text-sm flex justify-center font-semibold text-white mb-4">Add an Expense</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+          <input type="number" id="expenseAmount" class="p-2 rounded-md text-black" placeholder="Enter amount" />
+          <button id="addExpense" class="p-2 bg-green-500 hover:bg-green-600 rounded-md text-white">Add Expense</button>
+        </div>
       </div>
-      <ul class="flex-1">
-        <li>
-          <a href="#home" class="block py-2 px-4 hover:bg-gray-200">Home</a>
-        </li>
-        <li>
-          <a href="#home" class="block py-2 px-4 hover:bg-gray-200">Add money</a>
-        </li>
-        <li>
-          <a href="#loan-lend" class="block py-2 px-4 hover:bg-gray-200">Loan/Lend</a>
-        </li>
-        <li>
-          <a href="#savings" class="block py-2 px-4 hover:bg-gray-200">Savings</a>
-        </li>
-        <li>
-          <a href="#profile" class="block py-2 px-4 hover:bg-gray-200">Profile</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
 
+      <!-- Category Grid -->
+      <div class="grid grid-cols-2 gap-4">
+        <div id="shopping" class="category p-4 text-center text-white rounded-lg cursor-pointer bg-red-500">
+          <span class="block text-lg font-semibold">Shopping</span>
+        </div>
+        <div id="rent" class="category p-4 text-center text-white rounded-lg cursor-pointer bg-blue-500">
+          <span class="block text-lg font-semibold">Rent</span>
+        </div>
+        <div id="school" class="category p-4 text-center text-white rounded-lg cursor-pointer bg-yellow-500">
+          <span class="block text-lg font-semibold">School</span>
+        </div>
+        <div id="food" class="category p-4 text-center text-white rounded-lg cursor-pointer bg-green-500">
+          <span class="block text-lg font-semibold">Food</span>
+        </div>
+      </div>
+  
+      <!-- Chart -->
+      <div class="mt-6 pb-36">
+        <canvas id="expensesChart"></canvas>
+      </div>
+    </main>
 
-  <script>
-    // Initialize Chart.js
-    const ctx = document.getElementById('spendingChart').getContext('2d');
-    const spendingChart = new Chart(ctx, {
-      type: 'pie',
-      data: {
-        labels: ['Food', 'Shopping', 'Rent', 'Others'],
-        datasets: [{
-          label: 'Spending',
-          data: [20, 30, 40, 0], // Example data
-          backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0'],
-        }]
-      },
-      options: {
-        responsive: true,
-        plugins: {
-          legend: {
-            position: 'top',
-          },
-          tooltip: {
-            callbacks: {
-              label: function(tooltipItem) {
-                return `${tooltipItem.label}: $${tooltipItem.raw}`;
-              }
-            }
-          }
-        }
-      }
-    });
-
-    // Floating Action Button (FAB) Toggle Script
-    document.getElementById('fab').addEventListener('click', function() {
-      const options = document.getElementById('fab-options');
-      options.classList.toggle('hidden');
-    });
-  </script>
-</body>
+    <!-- Bottom Nav for Mobile -->
+    <nav class="fixed bottom-0 left-0 right-0 bg-gray-800 z-50">
+      <div class="flex justify-around items-center p-2">
+        <a href="home.html" class="text-gray-400 flex flex-col items-center"
+          ><i class="fa-solid fa-house p-2"></i>
+          <span class="text-xs">Home</span>
+        </a>
+        <a href="loan.html" class="text-gray-400 flex flex-col items-center">
+          <i class="fa-solid fa-landmark p-2"></i>
+          <span class="text-xs">Lend</span>
+        </a>
+        <a href="expence.html" class="text-gray-400 flex flex-col items-center"
+          ><i class="fa-solid fa-money-check-dollar p-2"></i>
+          <span class="text-xs">Expenses</span>
+        </a>
+        <a href="savings.html" class="text-gray-400 flex flex-col items-center">
+          <i class="fa-solid fa-piggy-bank p-2"></i>
+          <span class="text-xs">Savings</span>
+        </a>
+        <a href="profile.html" class="text-gray-400 flex flex-col items-center">
+          <i class="fa-solid fa-user p-2"></i>
+          <span class="text-xs">Profile</span>
+        </a>
+      </div>  
+    </nav>
+    <script src="../js/expence.js"></script>
+  </body>
 </html>
