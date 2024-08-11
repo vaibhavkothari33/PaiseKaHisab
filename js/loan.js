@@ -20,7 +20,7 @@ function saveToLocalStorage(records) {
         <td class="border px-4 py-2 border-gray-600">${record.amount}</td>
         <td class="border px-4 py-2 border-gray-600 ${typeClass}">${record.transactionType.charAt(0).toUpperCase() + record.transactionType.slice(1)}</td>
         <td class="border px-4 py-2 border-gray-600">
-          <button class="bg-red-500 text-white p-1 rounded" onclick="deleteRow(${index})">Delete</button>
+          <button class="bg-green-500 flex justify-center align-center text-white p-1 rounded" onclick="deleteRow(${index})"><i class="fa-solid fa-check p-2"></i></button>
         </td>
       `;
     });

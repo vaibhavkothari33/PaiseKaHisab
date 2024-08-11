@@ -46,88 +46,33 @@
   </main>
 
   <!-- Bottom Nav for Mobile -->
-  <nav class="fixed bottom-0 left-0 w-full border-t bg-gray-800 md:hidden">
+  
+  <nav class="fixed bottom-0 left-0 right-0 bg-gray-800 z-50">
     <div class="flex justify-around items-center p-2">
-      <a href="home.html" class="text-gray-400 flex flex-col items-center">
-        <i class="fa-solid fa-house p-2"></i>
+      <a href="home.html" class="text-gray-400 flex flex-col items-center"
+        ><i class="fa-solid fa-house p-2"></i>
         <span class="text-xs">Home</span>
       </a>
-      <a href="loan.html" class="text-gray-400 flex flex-col items-center">
+      <a href="loan.html" class="text-gray-400 flex flex-col  items-center">
         <i class="fa-solid fa-landmark p-2"></i>
         <span class="text-xs">Lend</span>
       </a>
-      <a href="expense.html" class="text-gray-400 flex flex-col items-center">
-        <i class="fa-solid fa-money-check-dollar p-2"></i>
+      <a href="expence.html" class="text-gray-400 flex flex-col items-center"
+        ><i class="fa-solid fa-money-check-dollar p-2"></i>
         <span class="text-xs">Expenses</span>
       </a>
       <a href="savings.html" class="text-gray-400 flex flex-col items-center">
         <i class="fa-solid fa-piggy-bank p-2"></i>
         <span class="text-xs">Savings</span>
       </a>
-      <a href="profile.html" class="text-gray-400 flex flex-col items-center">
+      <a href="profile.html" class="text-green-400 flex flex-col items-center">
         <i class="fa-solid fa-user p-2"></i>
         <span class="text-xs">Profile</span>
       </a>
-    </div>
-  </nav>
+    </div> 
+    </nav> 
 
-  <!-- Top Nav for Tablet and Desktop -->
-  <nav class="hidden md:flex md:flex-col md:w-64 md:bg-white md:shadow-md md:h-full">
-    <div class="flex flex-col h-full">
-      <div class="p-4 bg-gray-800 text-white">
-        <h2 class="text-xl font-bold">Dashboard</h2>
-      </div>
-      <ul class="flex-1">
-        <li>
-          <a href="home.html" class="block py-2 px-4 hover:bg-gray-200">Home</a>
-        </li>
-        <li>
-          <a href="loan.html" class="block py-2 px-4 hover:bg-gray-200">Loan/Lend</a>
-        </li>
-        <li>
-          <a href="expense.html" class="block py-2 px-4 hover:bg-gray-200">Expenses</a>
-        </li>
-        <li>
-          <a href="savings.html" class="block py-2 px-4 hover:bg-gray-200">Savings</a>
-        </li>
-        <li>
-          <a href="profile.html" class="block py-2 px-4 hover:bg-gray-200">Profile</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
 
-  <script>
-    document.getElementById('createRecord').addEventListener('click', function () {
-      const name = document.getElementById('name').value;
-      const amount = document.getElementById('amount').value;
-      const transactionType = document.getElementById('transactionType').value;
-
-      if (name && amount) {
-        const table = document.getElementById('recordsBody');
-        const row = table.insertRow();
-        row.innerHTML = `
-          <td class="border px-4 py-2">${name}</td>
-          <td class="border px-4 py-2">${amount}</td>
-          <td class="border px-4 py-2">${transactionType}</td>
-          <td class="border px-4 py-2">
-            <button class="bg-red-500 text-white p-1 rounded" onclick="deleteRow(this)">Delete</button>
-          </td>
-        `;
-        clearInputs();
-      }
-    });
-
-    function deleteRow(button) {
-      const row = button.parentNode.parentNode;
-      row.remove();
-    }
-
-    function clearInputs() {
-      document.getElementById('name').value = '';
-      document.getElementById('amount').value = '';
-      document.getElementById('transactionType').value = 'give';
-    }
-  </script>
+  
 </body>
 </html>
