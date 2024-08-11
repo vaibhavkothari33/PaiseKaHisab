@@ -39,7 +39,7 @@ onAuthStateChanged(auth, (user) => {
     }
     else {
         alert("Create Account first & login");
-        window.location.href = "index.html";
+        window.location.href = "../index.html";
     }
 })
 // updateUserProfile()
