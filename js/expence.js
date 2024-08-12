@@ -128,11 +128,7 @@ document.querySelectorAll('.category').forEach(category => {
         }
     });
 });
-const del = document.querySelector("#delExpense");
-del.addEventListener("click", () => {
-    localStorage.clear();
-    location.reload();
-})
+
 // Load saved expenses and transactions on page load
 window.addEventListener('load', () => {
     const savedExpenses = JSON.parse(localStorage.getItem('expenses'));

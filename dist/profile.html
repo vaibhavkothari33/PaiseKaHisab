@@ -15,9 +15,27 @@
 </head>
 <body class="bg-gray-900 text-white flex flex-col min-h-screen">
 
-  <h1 class="text-2xl font-serif mb-4 mt-4 text-center">Profile</h1>
+  <h1 class="text-2xl font-serif mb-4 mt-4 text-center">Account Details</h1>
 
+  <div class=" p-8 rounded-lg shadow-lg w-full max-w-md">
+    <div class="flex flex-col items-center">
+        <!-- <img id="user-photo" class="w-24 h-24 rounded-full mb-4" src="" alt="User Photo"> -->
+        <div id="google-sign">
+          <img id="userProfilePicture" >
+          </div>
 
+        <h1 id="user-name" class="text-xl font-semibold text-white mb-2"><p id="userName"></p></h1>
+        <p id="userEmail" class="text-white mb-6"></p>
+        <button id="delete-data" class="w-full  bg-blue-500 text-white py-2 px-4 rounded-lg mb-4  hover:bg-blue-600">
+            Delete Data
+        </button>
+        <button id="logout" class="w-full bg-red-500 text-white py-2 px-4 rounded-lg  hover:bg-red-600">
+            Logout
+        </button>
+    </div>
+</div>
+  
+</div>
   <!-- Bottom Nav for Mobile -->
   
   <nav class="fixed bottom-0 left-0 right-0 bg-gray-800 z-50">
@@ -39,15 +57,14 @@
         <span class="text-xs">Savings</span>
       </a>
       <a href="profile.html" class="text-green-400 flex flex-col items-center">
-        <div id="google-sign">
+        <i class="fa-solid fa-user p-2"></i>
+        <!-- <div id="google-sign">
           <img id="userProfilePicture" >
-          </div>
+          </div> -->
         <span class="text-xs">Profile</span>
       </a>
     </div> 
     </nav> 
-
-
-  
 </body>
+<script src="../js/profile.js"></script>
 </html>
