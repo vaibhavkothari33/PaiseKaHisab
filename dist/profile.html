@@ -15,38 +15,8 @@
 </head>
 <body class="bg-gray-900 text-white flex flex-col min-h-screen">
 
-  <h1 class="text-2xl font-serif mb-4 mt-4 text-center">Money Lend</h1>
+  <h1 class="text-2xl font-serif mb-4 mt-4 text-center">Profile</h1>
 
-  <main class="flex-1 p-4">
-    <div class="mb-6">
-      <h2 class="text-lg font-semibold mb-4">Add a Record</h2>
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-        <input type="text" id="name" class="p-2 rounded-md text-black" placeholder="Enter name">
-        <input type="number" id="amount" class="p-2 rounded-md text-black" placeholder="Enter amount">
-        <select id="transactionType" class="p-2 rounded-md text-black">
-          <option value="give">Give</option>
-          <option value="take">Take</option>
-        </select>
-        <button id="createRecord" class="p-2 bg-green-500 hover:bg-green-600 rounded-md text-white">Create</button>
-      </div>
-    </div>
-
-    <div class="overflow-x-auto">
-      <table id="recordsTable" class="min-w-full bg-white text-black rounded-lg">
-        <thead>
-          <tr>
-            <th class="px-4 py-2 border-b">Name</th>
-            <th class="px-4 py-2 border-b">Amount</th>
-            <th class="px-4 py-2 border-b">Type</th>
-            <th class="px-4 py-2 border-b">Action</th>
-          </tr>
-        </thead>
-        <tbody id="recordsBody">
-          <!-- Records will be dynamically inserted here -->
-        </tbody>
-      </table>
-    </div>
-  </main>
 
   <!-- Bottom Nav for Mobile -->
   

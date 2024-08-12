@@ -22,26 +22,30 @@
   <body class="bg-gray-900 flex items-center justify-center min-h-screen">
     <div class="bg-gray-900  max-w-md w-full">
       <h1
-      class="text-2xl font-serif mt-4 mb-4 flex justify-center text-center text-white">
+      class="text-2xl font-serif mt-4 mb-8 flex justify-center font-bold text-center text-white">
       Savings
     </h1>
+    <!-- <h1 class="text-2xl font-serif text-white mt-4 text-center mb-8">Savings</h1> -->
+    <!-- <p class="text-white flex justify-center font-serif mt-10 text-lg">Plan your daily spending and</p>
+    <p class="text-white flex justify-center font-serif  text-lg">&</p>
+    <p class="text-white flex justify-center font-serif pb-10 text-lg"> reach your savings goal!</p> -->
 
         <div class="mb-4">
-            <label for="budget" class="block text-sm font-medium text-white text-center">Monthly Budget:</label>
+            <label for="budget" class="block text-sm font-bold text-white text-center">Monthly Budget:</label>
             <input type="number" id="budget" placeholder="Enter your monthly budget"
-                class="mt-1 block w-56 mx-auto px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm " />
+                class="mt-1 block w-56 mx-auto px-3 py-2 text-white border bg-gray-950 border-gray-950 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm " />
         </div>
 
         <div class="mb-4">
-            <label for="goal" class="block text-sm font-medium text-white text-center">Goal Amount (optional):</label>
+            <label for="goal" class="block text-sm font-bold text-white text-center">Goal Amount (optional):</label>
             <input type="number" id="goal" placeholder="Enter the goal amount"
-                class="mt-1 block w-56 mx-auto px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+                class="mt-1 block w-56 mx-auto px-3 py-2 text-white border bg-gray-950 border-gray-950 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
         </div>
 
         <div class="mb-6">
-            <label for="save" class="block text-sm font-medium text-white text-center">Monthly Savings:</label>
+            <label for="save" class="block text-sm font-bold text-white text-center">Monthly Savings:</label>
             <input type="number" id="save" placeholder="Enter the saving amount"
-                class="mt-1 block w-56 mx-auto px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+                class="mt-1 block w-56 mx-auto px-3 py-2 text-white border bg-gray-950 border-gray-950 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
         </div>
 
         <div class="flex justify-center">
@@ -53,15 +57,15 @@
         <div id="result" class="mt-6 text-center text-white font-semibold"></div>
 
         <!-- Personalized Savings Tips -->
-        <div id="tips" class="mt-6 p-4 bg-blue-50 rounded-lg text-center mx-auto w-full max-w-md">
+        <div id="tips" class="mt-6 p-4 bg-green-200 rounded-lg text-center mx-auto w-full max-w-md">
           <h2 class="text-lg font-bold text-blue-700">Personalized Savings Tips</h2>
-          <p id="advice" class="text-black mt-2">Enter your details to get personalized advice!</p>
+          <p id="advice" class="text-black font-bold mt-2">Enter your details to get personalized advice!</p>
       </div>
 
       <!-- Savings Goal Countdown -->
-      <div id="countdown" class="mt-6  mb-40 p-4 bg-yellow-50 rounded-lg text-center mx-auto w-full max-w-md">
+      <div id="countdown" class="mt-6  mb-40 p-4 bg-yellow-200 rounded-lg text-center mx-auto w-full max-w-md">
           <h2 class="text-lg font-bold text-yellow-700">Savings Goal Countdown</h2>
-          <p id="days-left" class="text-black mt-2">Start saving to see your countdown!</p>
+          <p id="days-left" class="text-black  mt-2">Start saving to see your countdown!</p>
       </div>
     </div>
  <!-- Bottom Nav for Mobile -->

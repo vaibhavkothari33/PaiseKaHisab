@@ -4,7 +4,7 @@ document.getElementById('submit').addEventListener('click', function () {
     const save = parseFloat(document.getElementById('save').value);
 
     if (isNaN(budget) || isNaN(save) || budget <= 0 || save <= 0) {
-        document.getElementById('result').innerText = "Please enter valid numbers for budget and saving!";
+        document.getElementById('result').innerText = "Please enter valid amount for budget and saving!";
         return;
     }
 
