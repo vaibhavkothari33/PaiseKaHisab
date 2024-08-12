@@ -3,14 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Main Dashboard</title>
+    <title>Savings</title>
     <link rel="stylesheet" href="output.css" />
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="shortcut icon" type="x-icon" href="./images/money.png">
-    <script defer type="module"  src="../js/login3.js"></script>
+    <link rel="shortcut icon" type="x-icon" href="./images/money.png" />
+    <script defer type="module" src="../js/login3.js"></script>
     <script defer type="module" src="../js/login.js"></script>
-    <link rel="stylesheet" href="../src/login.css">
+    <link rel="stylesheet" href="../src/login.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
@@ -19,21 +19,40 @@
       referrerpolicy="no-referrer"
     />
   </head>
-  <body class="bg-black flex flex-col min-h-screen">
-    <h1
-      class="text-2xl font-serif  mb-4 mt-4 flex justify-center text-center text-white"
-    >
-      Savings
-    </h1>
-    <!-- Bottom Nav for Mobile -->
-    
+  <body class="bg-gray-900 text-white flex flex-col min-h-screen p-4">
+    <header class="text-center mb-6">
+        <h1 class="text-3xl font-bold">Savings Planner</h1>
+        <p class="text-gray-400">Plan your daily spending and reach your savings goal!</p>
+    </header>
+
+    <main class="flex-1 max-w-lg mx-auto">
+        <form id="savingsForm" class="space-y-6">
+            <div>
+                <label for="pocketMoney" class="block text-lg font-medium">Monthly Pocket Money (₹):</label>
+                <input type="number" id="pocketMoney" class="w-full p-2 mt-1 bg-gray-800 text-white rounded-md" placeholder="Your monthly budget" required>
+            </div>
+
+            <div>
+                <label for="savingsGoal" class="block text-lg font-medium">Monthly Savings Goal (₹):</label>
+                <input type="number" id="savingsGoal" class="w-full flex justify-center align-center p-2 mt-1 bg-gray-800 text-white rounded-md" placeholder="How much you want to save" required>
+            </div>
+
+            <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-md text-lg font-semibold">Calculate Daily Spending</button>
+        </form>
+
+        <div id="result" class="mt-8 hidden">
+            <h2 class="text-xl font-bold">Your Plan</h2>
+            <p id="dailySpending" class="mt-4 p-4 bg-gray-800 rounded-md mb-20"></p>
+        </div>
+    </main>    <!-- Bottom Nav for Mobile -->
+
     <nav class="fixed bottom-0 left-0 right-0 bg-gray-800 z-50">
       <div class="flex justify-around items-center p-2">
         <a href="home.html" class="text-gray-400 flex flex-col items-center"
           ><i class="fa-solid fa-house p-2"></i>
           <span class="text-xs">Home</span>
         </a>
-        <a href="loan.html" class="text-gray-400 flex flex-col  items-center">
+        <a href="loan.html" class="text-gray-400 flex flex-col items-center">
           <i class="fa-solid fa-landmark p-2"></i>
           <span class="text-xs">Lend</span>
         </a>
@@ -41,17 +60,21 @@
           ><i class="fa-solid fa-money-check-dollar p-2"></i>
           <span class="text-xs">Expenses</span>
         </a>
-        <a href="savings.html" class="text-green-400 flex flex-col items-center">
+        <a
+          href="savings.html"
+          class="text-green-400 flex flex-col items-center"
+        >
           <i class="fa-solid fa-piggy-bank p-2"></i>
           <span class="text-xs">Savings</span>
         </a>
         <a href="profile.html" class="text-gray-400 flex flex-col items-center">
           <div id="google-sign">
-            <img id="userProfilePicture" >
-            </div>
+            <img id="userProfilePicture" />
+          </div>
           <span class="text-xs">Profile</span>
         </a>
-      </div> 
-      </nav> 
+      </div>
+    </nav>
   </body>
+  <script defer src="../js/saving.js"></script>
 </html>
