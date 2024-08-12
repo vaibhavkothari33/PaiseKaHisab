@@ -1,7 +1,7 @@
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-app.js";
-import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-auth.js";
+import { getAuth, onAuthStateChanged,signOut } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-auth.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyDoekpzO2dDvu7_HCf218sJv4Iv9e7hCGs",
@@ -43,3 +43,14 @@ onAuthStateChanged(auth, (user) => {
     }
 })
 // updateUserProfile()
+const logoutButton = document.getElementById('logout');
+logoutButton.addEventListener('click', () => {
+    signOut(auth).then(() => {
+        // Sign-out successful.
+        window.location.href = '../index.html'; // Redirect to login page or home page
+    }).catch((error) => {
+        // An error happened.
+        console.error('Logout Error:', error.message);
+        alert('Error logging out. Please try again.');
+    });
+});
