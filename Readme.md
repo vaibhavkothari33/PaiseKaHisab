@@ -1,73 +1,92 @@
 # Money Tracker Web Application
 
-Welcome to the **PaiseKaHisab** web application! This application is designed to help you manage your finances, track your expenses, and gain insights into your spending habits. Below is an overview of the features and functionalities of the app.
+Welcome to the **PaiseKaHisab** web application! This app is designed to help you manage your finances, track your expenses, visualize spending patterns, and provide useful financial advice. Below is a detailed overview of the app's features.
 
 ## Features
 
 ### 1. Expense Tracking
 
 **Feature Overview:**
-- **Add an Expense:** Easily add your expenses by entering the amount and selecting a category.
-- **Categories:** Track your spending in different categories such as Food, Tuck Shop, Shopping, Travel, Lend, and Others.
-- **Transaction History:** View a detailed history of all your transactions, including the category, date, time, and amount spent.
+- **Add an Expense:** Easily record your expenses by entering the amount and selecting a category.
+- **Categories:** Track your spending in predefined categories like Food, Shopping, Rent, Travel, Lend, and others.
+- **Transaction History:** View a detailed history of all your transactions, including the category, date, and amount spent.
 
 **How It Works:**
-- Users can enter the amount of money spent and select the category of the expense.
-- The transaction is recorded with the current date and time.
-- Transactions are stored in local storage, allowing you to view them later.
+- Users enter the expense amount and select the appropriate category.
+- Transactions are timestamped and stored locally, so they persist even after page reloads.
+- The app maintains a complete history of transactions for future reference.
 
 ### 2. Expense Visualization
 
 **Feature Overview:**
-- **Pie Chart:** Visualize your spending with a dynamic pie chart that updates as you add new expenses.
+- **Pie Chart:** Visualize your expenses with a real-time pie chart that updates as you add new transactions.
 
 **How It Works:**
-- The pie chart displays the proportion of spending across different categories.
-- It is updated in real-time whenever a new expense is added, providing an immediate visual representation of your spending.
+- The pie chart reflects the percentage of spending across different categories.
+- Every new expense automatically updates the chart, providing an instant visual summary.
 
 ### 3. Transaction History Table
 
 **Feature Overview:**
-- **Detailed Table:** View a tabular representation of your transaction history.
-- **Columns:** Displays category, date, and amount spent.
-- **Total Spend:** Shows the total amount spent at the end of the table.
+- **Detailed Table:** Displays your transaction history in a clear and organized table.
+- **Columns:** Includes the category, date, and amount spent for each transaction.
+- **Total Spend:** Shows the total amount spent across all categories.
 
 **How It Works:**
-- Transactions are listed in a table with details including the category, date, and amount.
-- The total amount spent is calculated and displayed at the bottom of the table.
+- The table is dynamically populated with transaction details as they are entered.
+- A total at the bottom calculates the overall spending.
 
 ### 4. Financial Advice
 
 **Feature Overview:**
-- **Random Advice:** Receive a piece of random financial advice each time you visit the home page.
+- **Random Advice:** Receive random financial advice every time you visit the home page.
 
 **How It Works:**
-- A random piece of financial advice is fetched from the Advice Slip API and displayed on the home page.
-- This feature provides users with useful tips to help manage their finances better.
+- Advice is fetched from the Advice Slip API and displayed on the home page.
+- This feature provides quick and helpful financial tips for better money management.
+
+### 5. Version Display and GitHub Commit Count
+
+**Feature Overview:**
+- **Current Version:** The app version is displayed in the footer section of the home page.
+- **GitHub Commit Count:** The number of commits made to build this app is dynamically fetched from GitHub.
+
+**How It Works:**
+- The app uses the GitHub API to fetch the total number of commits made to the repository and displays this count in the footer.
+- The current app version is also shown alongside the commit count.
 
 ## Technologies Used
 
 - **HTML/CSS:** For structuring and styling the web pages.
-- **JavaScript:** For handling user interactions, updating the chart, and managing local storage.
+- **JavaScript:** For managing local storage, user interactions, and GitHub API integration.
 - **Chart.js:** For rendering dynamic pie charts.
 - **Tailwind CSS:** For responsive and modern design.
 - **Advice Slip API:** For fetching random financial advice.
+- **GitHub API:** To dynamically fetch and display the number of commits made to the repository.
 
 ## How to Use
 
 1. **Add an Expense:**
-   - Enter the amount and select the category of your expense.
-   - Click the "Add Expense" button to record it.
+   - Enter the amount and select the expense category.
+   - Click the "Add Expense" button to record the transaction.
 
 2. **View Pie Chart:**
-   - The pie chart on the page will update automatically to reflect your spending across different categories.
+   - The pie chart updates automatically to reflect your spending distribution across categories.
 
 3. **Check Transaction History:**
-   - View the list of transactions, including category, date, and amount, in the table below the chart.
+   - View the table listing all transactions, including category, date, and amount.
 
 4. **Get Financial Advice:**
-   - Visit the home page to receive a random piece of financial advice.
-###
+   - Visit the home page for random financial advice to help manage your spending.
+
+5. **Check App Version and Commit Count:**
+   - Scroll to the footer to see the current app version and the number of GitHub commits made to build this app.
+
+6. **Social Media Links:**
+   - Hover over the LinkedIn, GitHub, and Twitter icons in the footer to explore my social profiles.
+
+## Contributions
+
 We welcome contributions to improve this project! If you are interested in contributing, please follow these steps:
 
 1. **Fork the Repository:**
@@ -109,8 +128,10 @@ I appreciate your contributions and will review your pull requests as soon as po
 
 ## Contact
 
-For any questions, feedback, or support regarding this project, please reach out to me on LinkedIn:
+For any questions, feedback, or support regarding this project, please reach out to me on my social platforms:
 
 - **LinkedIn:** [vaibhavkothari33](https://www.linkedin.com/in/vaibhavkothari33)
+- **GitHub:** [vaibhavkothari33](https://github.com/vaibhavkothari33)
+- **Twitter:** [@vaibhavkothari33](https://twitter.com/vaibhavkothari33)
 
-I value your input and are here to assist you!
+I value your input and am here to assist you!
