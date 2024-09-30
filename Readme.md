@@ -45,15 +45,13 @@ Welcome to the **PaiseKaHisab** web application! This app is designed to help yo
 - Advice is fetched from the Advice Slip API and displayed on the home page.
 - This feature provides quick and helpful financial tips for better money management.
 
-### 5. Version Display and GitHub Commit Count
+### 5. GitHub Commit Count
 
 **Feature Overview:**
-- **Current Version:** The app version is displayed in the footer section of the home page.
 - **GitHub Commit Count:** The number of commits made to build this app is dynamically fetched from GitHub.
 
 **How It Works:**
 - The app uses the GitHub API to fetch the total number of commits made to the repository and displays this count in the footer.
-- The current app version is also shown alongside the commit count.
 
 ## Technologies Used
 
