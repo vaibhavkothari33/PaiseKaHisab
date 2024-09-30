@@ -21,13 +21,18 @@ function updateTransactionTable() {
 
     let totalAmount = 0;
 
-    transactions.forEach(transaction => {
+    transactions.forEach((transaction, index) => {
         const transactionRow = document.createElement('tr');
 
         transactionRow.innerHTML = `
-        <td class="border px-4 py-2">${transaction.date} </td>
+            <td class="border px-4 py-2">${transaction.date} </td>
             <td class="border px-4 py-2">${transaction.category}</td>
             <td class="border px-4 py-2">${transaction.amount}</td>
+            <td class="border px-4 py-2">
+                <button class="bg-red-500 text-white py-1 px-2 rounded" onclick="deleteTransaction(${index})">
+                    Delete
+                </button>
+            </td>
         `;
 
         transactionTableBody.appendChild(transactionRow);
@@ -37,10 +42,28 @@ function updateTransactionTable() {
     // Add total row at the end
     const totalRow = document.createElement('tr');
     totalRow.innerHTML = `
-        <td class="border px-4 py-2 font-bold text-right" colspan="2">Total Spent:</td>
+        <td class="border px-4 py-2 font-bold text-right" colspan="3">Total Spent:</td>
         <td class="border px-4 py-2 font-bold">${totalAmount}</td>
     `;
     transactionTableBody.appendChild(totalRow);
+}
+
+// Function to delete a transaction
+function deleteTransaction(index) {
+    const transaction = transactions[index];
+
+    // Subtract the amount 
+    expenses[transaction.category] -= transaction.amount;
+
+    // Remove the transaction from the transactions array
+    transactions.splice(index, 1);
+
+    // Update local storage
+    localStorage.setItem('expenses', JSON.stringify(expenses));
+    localStorage.setItem('transactions', JSON.stringify(transactions));
+
+    updateChart();
+    updateTransactionTable();
 }
 
 // Function to initialize or update the chart
@@ -100,12 +123,10 @@ document.querySelectorAll('.category').forEach(category => {
         if (!isNaN(amount) && amount > 0) {
             expenses[categoryName] += amount;
 
-            // Get current date and time
             const now = new Date();
             const date = now.toLocaleDateString();
             const time = now.toLocaleTimeString();
 
-            // Add the transaction to the transactions array
             transactions.push({
                 category: categoryName,
                 amount: amount,
@@ -113,14 +134,14 @@ document.querySelectorAll('.category').forEach(category => {
                 time: time
             });
 
-            // Save to local storage
+            // Save 
             localStorage.setItem('expenses', JSON.stringify(expenses));
             localStorage.setItem('transactions', JSON.stringify(transactions));
 
-            // Clear the input field
+            // Clear 
             document.getElementById("expenseAmount").value = '';
 
-            // Update the chart and transaction table
+            // Update
             updateChart();
             updateTransactionTable();
         } else {

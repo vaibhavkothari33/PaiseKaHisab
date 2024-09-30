@@ -18,6 +18,7 @@ function saveToLocalStorage(records) {
       row.innerHTML = `
         <td class="border px-4 py-2 border-gray-600">${record.name}</td>
         <td class="border px-4 py-2 border-gray-600">${record.amount}</td>
+        <td class="border px-4 py-2 border-gray-600">${record.item}</td>
         <td class="border px-4 py-2 border-gray-600 ${typeClass}">${record.transactionType.charAt(0).toUpperCase() + record.transactionType.slice(1)}</td>
         <td class="border px-4 py-2 border-gray-600">
           <button class="bg-green-500 flex justify-center align-center text-white p-1 rounded" onclick="deleteRow(${index})"><i class="fa-solid fa-check p-2"></i></button>
@@ -40,10 +41,11 @@ function saveToLocalStorage(records) {
   document.getElementById('createRecord').addEventListener('click', function () {
     const name = document.getElementById('name').value;
     const amount = document.getElementById('amount').value;
+    const item = document.getElementById('item').value;
     const transactionType = document.getElementById('transactionType').value;
 
     if (name && amount) {
-      const record = { name, amount, transactionType };
+      const record = { name, amount, item, transactionType };
       records.push(record);
       saveToLocalStorage(records);
       renderRecords(records);
@@ -54,5 +56,6 @@ function saveToLocalStorage(records) {
   function clearInputs() {
     document.getElementById('name').value = '';
     document.getElementById('amount').value = '';
+    document.getElementById('item').value = '';
     document.getElementById('transactionType').value = 'give';
   }

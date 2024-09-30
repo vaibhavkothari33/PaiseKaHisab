@@ -4,50 +4,140 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PaiseKaHisab</title>
-    <link rel="shortcut icon" type="x-icon" href="../images/money.png">
+    <link rel="shortcut icon" type="x-icon" href="../images/money.png" />
     <link rel="stylesheet" href="output.css" />
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="shortcut icon" type="x-icon" href="./images/money.png">
-
-    <script defer type="module"  src="../js/login2.js"></script>
+    <link rel="shortcut icon" type="x-icon" href="./images/money.png" />
+    <script defer type="module" src="../js/login2.js"></script>
     <script defer type="module" src="../js/login.js"></script>
-    <link rel="stylesheet" href="../src/login.css">
-
+    <script defer type="module" src="../js/home.js"></script>
+    <link rel="stylesheet" href="../src/login.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
       integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
       crossorigin="anonymous"
-      referrerpolicy="no-referrer"/>
+      referrerpolicy="no-referrer"
+    />
   </head>
- 
+
   <body class="bg-gray-900 flex flex-col min-h-screen">
     <!-- Main Content -->
     <div class="container mx-auto p-4">
       <!-- App Details Section -->
-      <div class="mb-8">
-          <h1 class="text-3xl font-bold flex justify-center text-white mb-4">Hey,<p id="userName"></p></h1>
-          <h2 class="text-2xl text-white flex justify-center italic font-bold mb-4">Ready to keep your</h2>
-          <h2 class="text-2xl text-white flex justify-center italic font-bold mb-4">PaiseKaHisab</h2>
-          <!-- <p class="text-lg pt-9 text-white">
-              This app helps you track your expenses, manage your finances, and keep an eye on your spending habits.
-              Easily categorize your expenses, <strong>visualize them with a pie chart</strong>, and view your transaction history all in one place.
-          </p> -->
+      <div class="text-center mb-8">
+        <div class="mb-8">
+          <h1 class="text-3xl font-bold flex justify-center text-white mb-4">
+            Hey,
+            <p id="userName"></p>
+          </h1>
+          <h2
+            class="text-2xl text-white flex justify-center italic font-bold mb-4"
+          >
+            Ready to keep your
+          </h2>
+          <h2
+            class="text-2xl text-white flex justify-center italic font-bold mb-4"
+          >
+            PaiseKaHisab 💸
+          </h2>
+        </div>
+        <!-- <h1 class="text-4xl font-bold text-white mb-5">Welcome to PaiseKaHisab</h1> -->
+        <p class="text-lg text-gray-300 font-bold mb-6">
+          Your go-to app for tracking expenses, lending, and saving money
+          wisely.
+        </p>
       </div>
 
-  
       <!-- Financial Advice Section -->
-      <div id="financialAdvice" class="pt-4 pl-4 pr-4 bg-gray-100 rounded mb-20 shadow-md">
-          <h2 class="text-2xl font-semibold  italic mb-4"> Advice 101 </h2>
-          <p id="adviceText" class="text-lg italic"></p><br>
-          <h2 class="text-sm font-semibold  italic mb-1">Who said it was Financial </h2>
+      <div
+        id="financialAdvice"
+        class="pt-4 pl-4 pr-4 bg-green-600 text-white rounded mb-8 shadow-lg"
+      >
+        <h2 class="text-2xl font-semibold italic mb-4">Advice 101</h2>
+        <p id="adviceText" class="text-lg italic"></p>
+        <br />
+        <h2 class="text-sm font-semibold italic mb-1">
+          Who said it was Financial?
+        </h2>
       </div>
-  </div>
-  <!-- <div class="flex text-white text-xl justify-center pb-4">Initial-Amount: 5000</div>
-  <div class="flex text-white text-xl justify-center pb-10">Amount-Remaining: 2000</div> -->
-  <div class="flex justify-center text-white text-2xl font-bold mb-4">Made with ❤️ and no 💸</div>
-  <div class="flex justify-center text-white text-2xl font-bold pb-24 italic">by Vaibhav Kothari</div>
+
+      <!-- App Features Section -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-16">
+        <div class="bg-gray-800 p-4 rounded-lg text-white text-center">
+          <i class="fa-solid fa-chart-line text-4xl mb-2"></i>
+          <h3 class="text-xl font-bold">Track Expenses</h3>
+          <p class="mt-4">
+            Keep track of your daily spending and manage your budget easily.
+          </p>
+        </div>
+        <div class="bg-gray-800 p-4 rounded-lg text-white text-center">
+          <i class="fa-solid fa-hand-holding-usd text-4xl mb-2"></i>
+          <h3 class="text-xl font-bold">Manage Loans</h3>
+          <p class="mt-4">
+            Record loans, repayments, and never miss a transaction.
+          </p>
+        </div>
+        <div class="bg-gray-800 p-4 rounded-lg text-white text-center">
+          <i class="fa-solid fa-piggy-bank text-4xl mb-2"></i>
+          <h3 class="text-xl font-bold">Save Smart</h3>
+          <p class="mt-4">
+            Get smart saving tips and visualize your savings progress.
+          </p>
+        </div>
+        <div class="bg-gray-800 p-4 rounded-lg text-white text-center">
+          <i class="fa-solid fa-cogs text-4xl mb-2"></i>
+          <h3 class="text-xl font-bold">Easy to Use</h3>
+          <p class="mt-4">
+            An intuitive interface designed to make managing money a breeze.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer
+      class="text-white flex flex-col justify-center items-center pb-4 space-y-4"
+    >
+      <div class="flex justify-center text-white text-2xl font-bold">
+        Made with ❤️ by
+      </div>
+      <div
+        class="flex justify-center text-white text-2xl font-bold pb-2 italic"
+      >
+        Vaibhav Kothari
+      </div>
+      <div class="flex space-x-8">
+        <a
+          href="https://www.linkedin.com/in/vaibhavkothari33"
+          target="_blank"
+          class="bg-green-500 text-white p-4 rounded-full hover:bg-yellow-500 transition duration-300"
+        >
+          <i class="fa-brands fa-linkedin fa-xl"></i>
+        </a>
+        <a
+          href="https://github.com/vaibhavkothari33"
+          target="_blank"
+          class="bg-green-500 text-white p-4 rounded-full hover:bg-yellow-500 transition duration-300"
+        >
+          <i class="fa-brands fa-github fa-xl"></i>
+        </a>
+        <a
+          href="https://twitter.com/vaibhavkotharii"
+          target="_blank"
+          class="bg-green-500 text-white p-4 rounded-full hover:bg-yellow-500 transition duration-300"
+        >
+          <i class="fa-brands fa-twitter fa-xl"></i>
+        </a>
+      </div>
+      <div class="flex justify-center text-white text-m font-bold mt-5 pb-24">
+        Commits to Build This App: &nbsp;<span id="commitCount"
+          >Loading...</span
+        >
+      </div>
+    </footer>
+
     <!-- Bottom Nav for Mobile -->
     <nav class="fixed bottom-0 left-0 right-0 bg-gray-800 z-50">
       <div class="flex justify-around items-center p-2">
@@ -68,32 +158,10 @@
           <span class="text-xs">Savings</span>
         </a>
         <a href="profile.html" class="text-gray-400 flex flex-col items-center">
-        
           <i class="fa-solid fa-user p-2"></i>
-           
           <span class="text-xs">Profile</span>
         </a>
-        <!-- <div id="google-login1"> -->
-          
       </div>
     </nav>
-
-   <script>
-    // Function to fetch random financial advice
-async function fetchFinancialAdvice() {
-    try {
-        const response = await fetch('https://api.adviceslip.com/advice');
-        const data = await response.json();
-        document.getElementById('adviceText').innerText = `"${data.slip.advice}"`;
-    } catch (error) {
-        console.error('Error fetching financial advice:', error);
-        document.getElementById('adviceText').innerText = 'Sorry, we could not load the advice at this time.';
-    }
-}
-
-// Fetch advice when the page loads
-window.addEventListener('load', fetchFinancialAdvice);
-
-   </script>
   </body>
 </html>
