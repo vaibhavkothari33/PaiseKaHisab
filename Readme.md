@@ -130,6 +130,6 @@ For any questions, feedback, or support regarding this project, please reach out
 
 - **LinkedIn:** [vaibhavkothari33](https://www.linkedin.com/in/vaibhavkothari33)
 - **GitHub:** [vaibhavkothari33](https://github.com/vaibhavkothari33)
-- **Twitter:** [@vaibhavkothari33](https://twitter.com/vaibhavkothari33)
+- **Twitter:** [@vaibhavkothari33](https://twitter.com/vaibhavkotharii)
 
 I value your input and am here to assist you!
