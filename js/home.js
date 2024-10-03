@@ -18,20 +18,30 @@ window.addEventListener("load", fetchUserDataAndAdvice);
 
 // Function to fetch number of commits from GitHub
 async function fetchCommitCount() {
-  try {
-    // Fetch all commits from the repo
-    const response = await fetch(`https://api.github.com/repos/vaibhavkothari33/PaiseKaHisab/commits?per_page=100`);
+  let page = 1;
+  let commitCount = 0;
+  const perPage = 100;
 
-    
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
+  try {
+    while (true) {
+      // Fetch a page of commits
+      const response = await fetch(`https://api.github.com/repos/vaibhavkothari33/PaiseKaHisab/commits?per_page=${perPage}&page=${page}`);
+      
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+
+      const commits = await response.json();
+
+      if (commits.length === 0) {
+        break;
+      }
+      commitCount += commits.length;
+      page++;
     }
 
-    const commits = await response.json();
-    const commitCount = commits.length;
-
     console.log(commitCount);
-  
+
     document.getElementById("commitCount").innerText = commitCount;
   } catch (error) {
     console.error("Error fetching commit count:", error);
