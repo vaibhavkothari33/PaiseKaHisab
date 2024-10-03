@@ -53,6 +53,21 @@ Welcome to the **PaiseKaHisab** web application! This app is designed to help yo
 **How It Works:**
 - The app uses the GitHub API to fetch the total number of commits made to the repository and displays this count in the footer.
 
+## Issues to be Solved
+
+We have some tasks open for contributions. If you're a fresher or a beginner, the app’s easy tech stack makes it ideal for you to start contributing! Here are some issues to work on:
+
+1. **Hide Firebase API Keys**:
+   - Currently, the Firebase API keys are publicly visible in the codebase. We need to secure these keys by hiding them properly.
+   
+2. **Add a Website Visitor Counter**:
+   - Implement a feature to count and display the number of visitors to the website.
+
+3. **Custom Alert Box for Input Validation**:
+   - Replace the browser's default alert boxes with a custom-designed alert box for validation errors (e.g., when a user doesn't enter a value in required fields like "price" or "name"). [See the full issue details here](https://github.com/vaibhavkothari33/PaiseKaHisab/issues/4).
+
+To contribute to these issues, please follow the contribution steps below.
+
 ## Technologies Used
 
 - **HTML/CSS:** For structuring and styling the web pages.
@@ -62,28 +77,7 @@ Welcome to the **PaiseKaHisab** web application! This app is designed to help yo
 - **Advice Slip API:** For fetching random financial advice.
 - **GitHub API:** To dynamically fetch and display the number of commits made to the repository.
 
-## How to Use
-
-1. **Add an Expense:**
-   - Enter the amount and select the expense category.
-   - Click the "Add Expense" button to record the transaction.
-
-2. **View Pie Chart:**
-   - The pie chart updates automatically to reflect your spending distribution across categories.
-
-3. **Check Transaction History:**
-   - View the table listing all transactions, including category, date, and amount.
-
-4. **Get Financial Advice:**
-   - Visit the home page for random financial advice to help manage your spending.
-
-5. **Check App Version and Commit Count:**
-   - Scroll to the footer to see the current app version and the number of GitHub commits made to build this app.
-
-6. **Social Media Links:**
-   - Hover over the LinkedIn, GitHub, and Twitter icons in the footer to explore my social profiles.
-
-## Contributions
+## How to Contribute
 
 We welcome contributions to improve this project! If you are interested in contributing, please follow these steps:
 
@@ -121,6 +115,12 @@ We welcome contributions to improve this project! If you are interested in contr
 
 6. **Submit a Pull Request:**
    - Go to the original repository and open a pull request from your branch to the main repository.
+
+### Contribution Guidelines
+
+- Please ensure your code is well-documented and follows best practices.
+- Ensure that all the features you add are fully responsive and work on mobile devices.
+- Run tests and verify that the existing functionality is not broken before submitting your pull request.
 
 I appreciate your contributions and will review your pull requests as soon as possible!
 
