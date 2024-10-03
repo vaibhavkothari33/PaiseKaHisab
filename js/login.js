@@ -11,9 +11,6 @@ import { getAuth, GoogleAuthProvider, signInWithPopup } from "https://www.gstati
     appId: "1:970698650805:web:b272a0ab98da84a7523afc"
   };
 
-  // Initialize Firebase
-//   const app = initializeApp(firebaseConfig);
-
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);

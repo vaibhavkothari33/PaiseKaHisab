@@ -12,7 +12,6 @@ const firebaseConfig = {
     appId: "1:970698650805:web:b272a0ab98da84a7523afc"
   };
 
-
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
@@ -22,14 +21,9 @@ const user = auth.currentUser;
 
 function updateUserProfile(user) {
     const userName = user.displayName;
-    // const userEmail = user.email;
-    // const userProfilePicture = user.photoURL;
-    // const userProfilePicture1 = user.photoURL;
 
     document.getElementById("userName").textContent = userName;
-    // document.getElementById("userEmail").textContent = userEmail;
-    // document.getElementById("userProfilePicture").src = userProfilePicture;
-    // document.getElementById("userProfilePicture1").src = userProfilePicture1;
+  
 }
 onAuthStateChanged(auth, (user) => {
     if (user) {
