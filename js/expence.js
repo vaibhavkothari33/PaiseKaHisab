@@ -145,7 +145,7 @@ document.querySelectorAll('.category').forEach(category => {
             updateChart();
             updateTransactionTable();
         } else {
-            alert("Please enter a valid amount");
+            showErrorDialog("Please enter a valid amount");
         }
     });
 });
