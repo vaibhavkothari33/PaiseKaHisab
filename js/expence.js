@@ -160,3 +160,54 @@ window.addEventListener('load', () => {
     updateChart();
     updateTransactionTable();
 });
+
+// JS for the filter dropdown
+
+function updateTransactionTable(filteredCategory = 'all') {
+    const transactionTableBody = document.getElementById('transactionTable').querySelector('tbody');
+    transactionTableBody.innerHTML = ''; // Clear the existing rows
+
+    let totalAmount = 0;
+
+    const filteredTransactions = filteredCategory === 'all' ? transactions : transactions.filter(transaction => transaction.category === filteredCategory);
+
+    filteredTransactions.forEach((transaction, index) => {
+        const transactionRow = document.createElement('tr');
+
+        transactionRow.innerHTML = `
+            <td class="border px-4 py-2">${transaction.date}</td>
+            <td class="border px-4 py-2">${transaction.category}</td>
+            <td class="border px-4 py-2">${transaction.amount}</td>
+            <td class="border px-4 py-2">
+                <button class="bg-red-500 text-white py-1 px-2 rounded" onclick="deleteTransaction(${index})">
+                    Delete
+                </button>
+            </td>
+        `;
+
+        transactionTableBody.appendChild(transactionRow);
+        totalAmount += transaction.amount;
+    });
+
+    const totalRow = document.createElement('tr');
+    totalRow.innerHTML = `
+        <td class="border px-4 py-2 font-bold text-right" colspan="3">Total Spent:</td>
+        <td class="border px-4 py-2 font-bold">${totalAmount}</td>
+    `;
+    transactionTableBody.appendChild(totalRow);
+}
+
+document.getElementById('filterCategory').addEventListener('change', function() {
+    const selectedCategory = this.value;
+    updateTransactionTable(selectedCategory);
+});
+
+window.addEventListener('load', () => {
+    const savedExpenses = JSON.parse(localStorage.getItem('expenses'));
+    if (savedExpenses) {
+        expenses = savedExpenses;
+    }
+
+    updateChart();
+    updateTransactionTable(); 
+});
