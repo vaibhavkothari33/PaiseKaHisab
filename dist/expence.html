@@ -58,6 +58,20 @@
     </main>
     
     <h2 class="text-lg font-semibold flex justify-center text-white mb-4">Transaction History</h2>
+    <!-- Filter Dropdown -->
+    <div class="filter-dropdown flex justify-center mb-4">
+      <label for="filterCategory" class="text-white mr-2">Filter by Category: </label>
+      <select id="filterCategory" class="bg-gray-800 text-white border border-gray-700 p-2 rounded">
+          <option value="all">All</option>
+          <option value="food">Food</option>
+          <option value="tuck">Tuck</option>
+          <option value="shopping">Shopping</option>
+          <option value="travel">Travel</option>
+          <option value="lend">Lend</option>
+          <option value="others">Others</option>
+      </select>
+  </div>
+  
     <table id="transactionTable" class="min-w-full mb-20 bg-gray-800 text-white">
       <thead>
         <tr>
