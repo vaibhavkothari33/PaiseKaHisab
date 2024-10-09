@@ -50,6 +50,10 @@ function saveToLocalStorage(records) {
       saveToLocalStorage(records);
       renderRecords(records);
       clearInputs();
+    } else if(!name) {
+      showErrorDialog("Please enter name");
+    } else if(!amount) {
+      showErrorDialog("Please Enter amount");
     }
   });
 
