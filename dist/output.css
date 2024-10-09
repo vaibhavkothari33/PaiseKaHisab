@@ -1333,3 +1333,25 @@ video {
     color: rgb(212 212 212 / var(--tw-text-opacity));
   }
 }
+
+/* Visitor Counter CSS */
+.visitors {
+  margin-top: 60px;
+  display: flex;
+  align-items: center;
+}
+
+.visitor-heading {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #fff;
+  margin: 0; /* Removes default h4 margin */
+  padding-right: 1rem; /* Adds space between the heading and the counter */
+}
+
+.counter {
+  margin-top: 10px;
+  margin-left: 30px;
+}
+
+
