@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bills</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="output.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  </head>
+  <body class="bg-gray-900 flex flex-col min-h-screen">
+    <h1 class="text-3xl font-serif mb-4 mt-5 flex justify-center text-center text-white">
+      Add Bills
+    </h1>
+
+    <!-- Centered content -->
+    <main class="flex-1 flex flex-col items-center justify-center p-4">
+      <!-- Input Section -->
+      <div class="w-full max-w-lg">
+        <div class="mb-6">
+          <div class="grid grid-cols-1 md:grid-cols-1 gap-4 mb-4">
+            <input type="number" id="expenseAmount" class="p-2 rounded-md text-black w-full" placeholder="Enter amount" />
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-1 gap-4 mb-4">
+            <label for="dueDate" class="text-white">Select due date:</label>
+            <input type="date" id="dueDate" class="p-2 rounded-md text-black w-full">
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-1 gap-4 mb-4">
+            <label for="billCategory" class="text-white">Select Bill Category:</label>
+            <select id="billCategory" class="p-2 rounded-md text-black w-full">
+              <option value="">Select Bill</option>
+              <option value="Electricity Bill">Electricity Bill</option>
+              <option value="Gas Bill">Gas Bill</option>
+              <option value="Water Bill">Water Bill</option>
+              <option value="Mobile Bill">Mobile Bill</option>
+              <option value="Internet Bill">Internet Bill</option>
+              <option value="Rent">Rent</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="flex justify-center">
+          <button id="addExpense" class="bg-green-500 hover:bg-green-600 text-white p-2 rounded-lg" onclick="addBill()">
+            Add Bill
+          </button>
+        </div>
+      </div>
+    </main>
+    
+    <h2 class="text-lg font-semibold flex justify-center text-white mb-4">Bills to be paid</h2>
+
+    <table id="transactionTable" class="min-w-full mb-20 bg-gray-800 text-white">
+      <thead>
+        <tr>
+          <th class="border px-4 py-2">Due Date</th>
+          <th class="border px-4 py-2">Category</th>
+          <th class="border px-4 py-2">Amount</th>
+          <th class="border px-4 py-2">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Transactions will be dynamically added here -->
+      </tbody>
+    </table>
+    <nav class="fixed bottom-0 left-0 right-0 bg-gray-800 z-50">
+        <div class="flex justify-around items-center p-2">
+          <a href="home.html" class="text-gray-400 flex flex-col items-center"
+            ><i class="fa-solid fa-house p-2"></i>
+            <span class="text-xs">Home</span>
+          </a>
+          <a href="loan.html" class="text-gray-400 flex flex-col items-center">
+            <i class="fa-solid fa-landmark p-2"></i>
+            <span class="text-xs">Lend</span>
+          </a>
+          <a href="expence.html" class="text-gray-400 flex flex-col items-center"
+            ><i class="fa-solid fa-money-check-dollar p-2"></i>
+            <span class="text-xs">Expenses</span>
+          </a>
+          <a href="savings.html" class="text-gray-400 flex flex-col items-center">
+            <i class="fa-solid fa-piggy-bank p-2"></i>
+            <span class="text-xs">Savings</span>
+          </a>
+          <a href="bills.html" class="text-green-400 flex flex-col items-center">
+         
+            <i class="fa-solid fa-file-invoice-dollar p-2"></i>
+         
+            <span class="text-xs">Bills</span>
+          </a>
+          <a href="profile.html" class="text-gray-400 flex flex-col items-center">
+         
+            <i class="fa-solid fa-user p-2"></i>
+         
+            <span class="text-xs">Profile</span>
+          </a>
+          
+        </div>  
+      </nav>
+
+      <script>
+        // Load bills from localStorage or initialize an empty array if no bills are saved
+        let bills = JSON.parse(localStorage.getItem('bills')) || [];
+      
+        // Function to render bills in the table
+        function renderBills() {
+          const billTableBody = document.querySelector('#transactionTable tbody');
+          billTableBody.innerHTML = '';  // Clear the table body
+      
+          let totalAmount = 0;
+      
+          bills.forEach((bill, index) => {
+            const billRow = document.createElement('tr');
+            billRow.innerHTML = `
+              <td class="border px-4 py-2">${bill.date}</td>
+              <td class="border px-4 py-2">${bill.category}</td>
+              <td class="border px-4 py-2">₹${bill.amount}</td>
+              <td class="border px-4 py-2">
+                  <button class="bg-red-500 text-white py-1 px-2 rounded" onclick="deleteBill(${index})">
+                      Delete
+                  </button>
+              </td>
+            `;
+            billTableBody.appendChild(billRow);
+            totalAmount += parseFloat(bill.amount);
+          });
+      
+          // Append total row
+          const totalRow = document.createElement('tr');
+          totalRow.innerHTML = `
+            <td class="border px-4 py-2 font-bold text-right" colspan="3">Total Spent:</td>
+            <td class="border px-4 py-2 font-bold">₹${totalAmount.toFixed(2)}</td>
+          `;
+          billTableBody.appendChild(totalRow);
+        }
+      
+        // Function to add a bill
+        function addBill() {
+          const amount = parseFloat(document.getElementById('expenseAmount').value);
+          const dueDate = document.getElementById('dueDate').value;
+          const billCategory = document.getElementById('billCategory').value;
+      
+          if (!billCategory || isNaN(amount) || !dueDate) {
+            alert('Please fill out all fields.');
+            return;
+          }
+      
+          // Create a new bill object
+          const bill = {
+            date: dueDate,
+            category: billCategory,
+            amount: amount.toFixed(2), // Round to 2 decimal places
+          };
+      
+          // Add bill to the array
+          bills.push(bill);
+      
+          // Save updated bills to localStorage
+          localStorage.setItem('bills', JSON.stringify(bills));
+      
+          // Render updated bills
+          renderBills();
+      
+          // Clear input fields after adding the bill
+          document.getElementById('expenseAmount').value = '';
+          document.getElementById('dueDate').value = '';
+          document.getElementById('billCategory').value = '';
+        }
+      
+        // Function to delete a bill
+        function deleteBill(index) {
+          // Remove bill at the given index
+          bills.splice(index, 1);
+      
+          // Save updated bills to localStorage
+          localStorage.setItem('bills', JSON.stringify(bills));
+      
+          // Re-render the table after deleting the bill
+          renderBills();
+        }
+      
+        // Render bills on page load
+        renderBills();
+      </script>
+      
+      
+
+  </body>
+</html>
