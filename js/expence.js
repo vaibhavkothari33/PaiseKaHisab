@@ -211,3 +211,40 @@ window.addEventListener('load', () => {
     updateChart();
     updateTransactionTable(); 
 });
+
+document.getElementById('exportPdf').addEventListener('click', function () {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+
+    // Add title to PDF
+    doc.text("Transaction History", 20, 10);
+
+    // Collect the data from the transaction table
+    const transactionTable = document.getElementById("transactionTable");
+    const rows = [];
+
+    // Loop through each row and collect the data for the PDF
+    transactionTable.querySelectorAll('tbody tr').forEach(row => {
+      const cells = row.querySelectorAll('td');
+      
+      // Check if the row has at least 3 cells (Date, Category, Amount)
+      if (cells.length >= 3) {
+        const rowData = [
+          cells[0]?.innerText || '', // Date
+          cells[1]?.innerText || '', // Category
+          cells[2]?.innerText || ''  // Amount
+        ];
+        rows.push(rowData);
+      }
+    });
+
+    // Use autoTable to add the table to the PDF
+    doc.autoTable({
+      head: [['Date', 'Category', 'Amount']],
+      body: rows,
+      startY: 20
+    });
+
+    // Save the PDF
+    doc.save('transaction-history.pdf');
+  });
