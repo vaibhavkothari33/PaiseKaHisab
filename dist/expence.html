@@ -13,6 +13,10 @@
     <script defer type="module" src="../js/login.js"></script>
     <script defer src="../js/UI.js"></script>
     <link rel="stylesheet" href="../src/login.css">
+<!-- jsPDF v2.5.1 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <!-- jsPDF AutoTable v3.5.16 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.16/jspdf.plugin.autotable.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer">
   </head>
   <body class="bg-gray-900 flex flex-col min-h-screen">
@@ -58,6 +62,13 @@
     </main>
     
     <h2 class="text-lg font-semibold flex justify-center text-white mb-4">Transaction History</h2>
+    <!-- Export Button -->
+    <div class="flex justify-center mb-4">
+      <button id="exportPdf" class="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded-lg">
+        Export to PDF
+      </button>
+    </div>
+    
     <!-- Filter by Category Dropdown -->
     <div class="filter-dropdown flex justify-center mb-4">
       <label for="filterCategory" class="text-white mr-2">Filter by Category: </label>
