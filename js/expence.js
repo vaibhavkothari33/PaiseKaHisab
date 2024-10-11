@@ -37,6 +37,8 @@ function updateTransactionTable() {
 
         transactionTableBody.appendChild(transactionRow);
         totalAmount += transaction.amount;
+        
+        console.log(totalAmount)
     });
 
     // Add total row at the end
@@ -64,6 +66,7 @@ function deleteTransaction(index) {
 
     updateChart();
     updateTransactionTable();
+    calculateTotalExpense();
 }
 
 // Function to initialize or update the chart
@@ -144,6 +147,7 @@ document.querySelectorAll('.category').forEach(category => {
             // Update
             updateChart();
             updateTransactionTable();
+            calculateTotalExpense();
         } else {
             showErrorDialog("Please enter a valid amount");
         }
@@ -159,6 +163,7 @@ window.addEventListener('load', () => {
 
     updateChart();
     updateTransactionTable();
+    
 });
 
 // JS for the filter dropdown
@@ -248,3 +253,14 @@ document.getElementById('exportPdf').addEventListener('click', function () {
     // Save the PDF
     doc.save('transaction-history.pdf');
   });
+
+
+  // Function to calculate the total expense from the transactions
+function calculateTotalExpense() {
+    let totalExpense = 0;
+    transactions.forEach(transaction => {
+        totalExpense += transaction.amount;
+    });
+    localStorage.setItem('totalExpense', totalExpense);
+    return totalExpense;
+}
