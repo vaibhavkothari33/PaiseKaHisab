@@ -97,16 +97,106 @@
       </nav>
 
       <script>
-        // Load bills from localStorage or initialize an empty array if no bills are saved
-        let bills = JSON.parse(localStorage.getItem('bills')) || [];
+        // // Load bills from localStorage or initialize an empty array if no bills are saved
+        // let bills = JSON.parse(localStorage.getItem('bills')) || [];
       
-        // Function to render bills in the table
+        // // Function to render bills in the table
+        // function renderBills() {
+        //   const billTableBody = document.querySelector('#transactionTable tbody');
+        //   billTableBody.innerHTML = '';  // Clear the table body
+      
+        //   let totalAmount = 0;
+      
+        //   bills.forEach((bill, index) => {
+        //     const billRow = document.createElement('tr');
+        //     billRow.innerHTML = `
+        //       <td class="border px-4 py-2">${bill.date}</td>
+        //       <td class="border px-4 py-2">${bill.category}</td>
+        //       <td class="border px-4 py-2">₹${bill.amount}</td>
+        //       <td class="border px-4 py-2">
+        //           <button class="bg-red-500 text-white py-1 px-2 rounded" onclick="deleteBill(${index})">
+        //               Delete
+        //           </button>
+        //       </td>
+        //     `;
+        //     billTableBody.appendChild(billRow);
+        //     totalAmount += parseFloat(bill.amount);
+        //   });
+
+        //   function calculateTotalBillAmount() {
+        //     let totalBillAmount = 0;
+        //     bills.forEach(bill => {
+        //       totalBillAmount += bill.amount;
+        //     });
+        //     localStorage.setItem('totalBillAmount', totalBillAmount);
+        //   }
+      
+        //   // Append total row
+        //   const totalRow = document.createElement('tr');
+        //   totalRow.innerHTML = `
+        //     <td class="border px-4 py-2 font-bold text-right" colspan="3">Total Spent:</td>
+        //     <td class="border px-4 py-2 font-bold">₹${totalAmount.toFixed(2)}</td>
+        //   `;
+        //   billTableBody.appendChild(totalRow);
+        // }
+      
+        // // Function to add a bill
+        // function addBill() {
+        //   const amount = parseFloat(document.getElementById('expenseAmount').value);
+        //   const dueDate = document.getElementById('dueDate').value;
+        //   const billCategory = document.getElementById('billCategory').value;
+      
+        //   if (!billCategory || isNaN(amount) || !dueDate) {
+        //     alert('Please fill out all fields.');
+        //     return;
+        //   }
+      
+        //   // Create a new bill object
+        //   const bill = {
+        //     date: dueDate,
+        //     category: billCategory,
+        //     amount: amount.toFixed(2), // Round to 2 decimal places
+        //   };
+      
+        //   // Add bill to the array
+        //   bills.push(bill);
+      
+        //   // Save updated bills to localStorage
+        //   localStorage.setItem('bills', JSON.stringify(bills));
+      
+        //   // Render updated bills
+        //   renderBills();
+        //   calculateTotalBillAmount();
+        //   // Clear input fields after adding the bill
+        //   document.getElementById('expenseAmount').value = '';
+        //   document.getElementById('dueDate').value = '';
+        //   document.getElementById('billCategory').value = '';
+        // }
+      
+        // // Function to delete a bill
+        // function deleteBill(index) {
+        //   // Remove bill at the given index
+        //   bills.splice(index, 1);
+      
+        //   // Save updated bills to localStorage
+        //   localStorage.setItem('bills', JSON.stringify(bills));
+      
+        //   // Re-render the table after deleting the bill
+        //   renderBills();
+        //   calculateTotalBillAmount();
+        // }
+      
+        // // Render bills on page load
+        // renderBills();
+        let bills = JSON.parse(localStorage.getItem('bills')) || [];
+
+// Function to render bills in the table
         function renderBills() {
           const billTableBody = document.querySelector('#transactionTable tbody');
-          billTableBody.innerHTML = '';  // Clear the table body
-      
+          billTableBody.innerHTML = ''; // Clear the table body
+
           let totalAmount = 0;
-      
+
           bills.forEach((bill, index) => {
             const billRow = document.createElement('tr');
             billRow.innerHTML = `
@@ -120,9 +210,9 @@
               </td>
             `;
             billTableBody.appendChild(billRow);
-            totalAmount += parseFloat(bill.amount);
+            totalAmount += parseFloat(bill.amount); // Ensure the amount is parsed as a number
           });
-      
+
           // Append total row
           const totalRow = document.createElement('tr');
           totalRow.innerHTML = `
@@ -131,54 +221,74 @@
           `;
           billTableBody.appendChild(totalRow);
         }
-      
+
+        // Function to calculate total bill amount and store it in localStorage
+        function calculateTotalBillAmount() {
+          let totalBillAmount = 0;
+
+          bills.forEach(bill => {
+            totalBillAmount += parseFloat(bill.amount); // Parse amount as a number
+          });
+
+          // Save the total bill amount in localStorage
+          localStorage.setItem('totalBillAmount', totalBillAmount);
+
+          console.log('Total Bill Amount:', totalBillAmount); // For debugging purposes
+        }
+
         // Function to add a bill
         function addBill() {
           const amount = parseFloat(document.getElementById('expenseAmount').value);
           const dueDate = document.getElementById('dueDate').value;
           const billCategory = document.getElementById('billCategory').value;
-      
+
           if (!billCategory || isNaN(amount) || !dueDate) {
             alert('Please fill out all fields.');
             return;
           }
-      
+
           // Create a new bill object
           const bill = {
             date: dueDate,
             category: billCategory,
-            amount: amount.toFixed(2), // Round to 2 decimal places
+            amount: amount.toFixed(2) // Store the amount as a string with two decimal places
           };
-      
+
           // Add bill to the array
           bills.push(bill);
-      
+
           // Save updated bills to localStorage
           localStorage.setItem('bills', JSON.stringify(bills));
-      
-          // Render updated bills
+
+          // Render updated bills and calculate total bill amount
           renderBills();
-      
+          calculateTotalBillAmount();
+
           // Clear input fields after adding the bill
           document.getElementById('expenseAmount').value = '';
           document.getElementById('dueDate').value = '';
           document.getElementById('billCategory').value = '';
         }
-      
+
         // Function to delete a bill
         function deleteBill(index) {
           // Remove bill at the given index
           bills.splice(index, 1);
-      
+
           // Save updated bills to localStorage
           localStorage.setItem('bills', JSON.stringify(bills));
-      
-          // Re-render the table after deleting the bill
+
+          // Re-render the table and calculate total bill amount after deleting the bill
           renderBills();
+          calculateTotalBillAmount();
         }
-      
+
         // Render bills on page load
-        renderBills();
+        window.addEventListener('load', () => {
+          renderBills();
+          calculateTotalBillAmount(); // Ensure totalBillAmount is updated on page load
+        });
+
       </script>
       
       

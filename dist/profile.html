@@ -8,7 +8,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <link rel="shortcut icon" type="x-icon" href="./images/money.png">
-  <script defer type="module"  src="../js/login3.js"></script>
+  <script defer type="module" src="../js/login3.js"></script>
   <script defer type="module" src="../js/login.js"></script>
   <link rel="stylesheet" href="../src/login.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer">
@@ -17,39 +17,69 @@
 
   <h1 class="text-2xl font-serif mb-4 mt-4 text-center">Account Details</h1>
 
-  <div class=" p-8 rounded-lg shadow-lg w-full max-w-md">
-    <div class="flex flex-col items-center">
-        <!-- <img id="user-photo" class="w-24 h-24 rounded-full mb-4" src="" alt="User Photo"> -->
-        <div id="google-sign">
-          <img id="userProfilePicture" >
-          </div>
+  <!-- Container for centering account info and total stats side by side -->
+  <div class="flex flex-col md:flex-row justify-center items-center gap-8 p-8 w-full">
 
+    <!-- Account Info Section -->
+    <div class="p-8 rounded-lg shadow-lg w-full max-w-md bg-gray-800">
+      <div class="flex flex-col items-center">
+        <div id="google-sign">
+          <img id="userProfilePicture" class="w-24 h-24 rounded-full mb-4" alt="User Photo">
+        </div>
         <h1 id="user-name" class="text-xl font-semibold text-white mb-2"><p id="userName"></p></h1>
         <p id="userEmail" class="text-white mb-6"></p>
-        <button id="delete-data" class="w-full  bg-blue-500 text-white py-2 px-4 rounded-lg mb-4  hover:bg-blue-600">
-            Delete Data
+        <button id="delete-data" class="w-full bg-blue-500 text-white py-2 px-4 rounded-lg mb-4 hover:bg-blue-600">
+          Delete Data
         </button>
-        <button id="logout" class="w-full bg-red-500 text-white py-2 px-4 rounded-lg  hover:bg-red-600">
-            Logout
+        <button id="logout" class="w-full bg-red-500 text-white py-2 px-4 rounded-lg hover:bg-red-600">
+          Logout
         </button>
+      </div>
     </div>
-</div>
-  
-</div>
+
+    <!-- Total Stats Section -->
+    <div class="grid grid-cols-2 gap-4 max-w-md w-full">
+
+      <!-- Total Expense Box -->
+      <div class="bg-white/30 backdrop-blur-md p-5 rounded-lg shadow-md border border-white/10">
+        <h3 class="text-lg font-semibold mb-2 text-white">Total Expense</h3>
+        <p id="totalExpense" class="text-2xl font-bold text-white">₹0</p>
+      </div>
+
+      <!-- Total Bill Amount Box -->
+      <div class="bg-white/30 backdrop-blur-md p-5 rounded-lg shadow-md border border-white/10">
+        <h3 class="text-lg font-semibold mb-2 text-white">Total Bill Amount Pending</h3>
+        <p id="totalBillAmount" class="text-2xl font-bold text-white">₹0</p>
+      </div>
+
+      <!-- Total Give Box -->
+      <div class="bg-white/30 backdrop-blur-md p-5 rounded-lg shadow-md border border-white/10">
+        <h3 class="text-lg font-semibold mb-2 text-white">Total Give</h3>
+        <p id="totalGive" class="text-2xl font-bold text-white">₹0</p>
+      </div>
+
+      <!-- Total Take Box -->
+      <div class="bg-white/30 backdrop-blur-md p-5 rounded-lg shadow-md border border-white/10">
+        <h3 class="text-lg font-semibold mb-2 text-white">Total Take</h3>
+        <p id="totalTake" class="text-2xl font-bold text-white">₹0</p>
+      </div>
+
+    </div>
+  </div>
+
   <!-- Bottom Nav for Mobile -->
-  
   <nav class="fixed bottom-0 left-0 right-0 bg-gray-800 z-50">
     <div class="flex justify-around items-center p-2">
-      <a href="home.html" class="text-gray-400 flex flex-col items-center"
-        ><i class="fa-solid fa-house p-2"></i>
+      <a href="home.html" class="text-gray-400 flex flex-col items-center">
+        <i class="fa-solid fa-house p-2"></i>
         <span class="text-xs">Home</span>
       </a>
-      <a href="loan.html" class="text-gray-400 flex flex-col  items-center">
+      <a href="loan.html" class="text-gray-400 flex flex-col items-center">
         <i class="fa-solid fa-landmark p-2"></i>
         <span class="text-xs">Lend</span>
       </a>
-      <a href="expence.html" class="text-gray-400 flex flex-col items-center"
-        ><i class="fa-solid fa-money-check-dollar p-2"></i>
+      <a href="expence.html" class="text-gray-400 flex flex-col items-center">
+        <i class="fa-solid fa-money-check-dollar p-2"></i>
         <span class="text-xs">Expenses</span>
       </a>
       <a href="savings.html" class="text-gray-400 flex flex-col items-center">
@@ -57,21 +87,16 @@
         <span class="text-xs">Savings</span>
       </a>
       <a href="bills.html" class="text-gray-400 flex flex-col items-center">
-         
         <i class="fa-solid fa-file-invoice-dollar p-2"></i>
-     
         <span class="text-xs">Bills</span>
       </a>
       <a href="profile.html" class="text-green-400 flex flex-col items-center">
         <i class="fa-solid fa-user p-2"></i>
-        <!-- <div id="google-sign">
-          <img id="userProfilePicture" >
-          </div> -->
         <span class="text-xs">Profile</span>
       </a>
-      
-    </div> 
-    </nav> 
+    </div>
+  </nav>
+
 </body>
 <script src="../js/profile.js"></script>
 </html>

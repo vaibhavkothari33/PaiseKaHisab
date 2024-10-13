@@ -2,6 +2,26 @@ function saveToLocalStorage(records) {
     localStorage.setItem('records', JSON.stringify(records));
   }
 
+  // Function to calculate total amount of 'give' and 'take' transactions
+function calculateTotals(records) {
+  let totalGive = 0;
+  let totalTake = 0;
+
+  records.forEach(record => {
+    const amount = parseFloat(record.amount);
+    if (record.transactionType === 'give') {
+      totalGive += amount;
+    } else if (record.transactionType === 'take') {
+      totalTake += amount;
+    }
+  });
+
+  const totals = { totalGive, totalTake };
+  localStorage.setItem('totals', JSON.stringify(totals));
+
+}
+
+
   // Function to load records from localStorage
   function loadFromLocalStorage() {
     const records = localStorage.getItem('records');
@@ -32,6 +52,7 @@ function saveToLocalStorage(records) {
     records.splice(index, 1);
     saveToLocalStorage(records);
     renderRecords(records);
+    calculateTotals(records);
   }
 
   // Initializing records array with data from localStorage
@@ -48,6 +69,7 @@ function saveToLocalStorage(records) {
       const record = { name, amount, item, transactionType };
       records.push(record);
       saveToLocalStorage(records);
+      calculateTotals(records);
       renderRecords(records);
       clearInputs();
     } else if(!name) {
