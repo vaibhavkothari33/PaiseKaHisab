@@ -4,7 +4,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.4/fireba
 import { getAuth, onAuthStateChanged,signOut } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-auth.js";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyDoekpzO2dDvu7_HCf218sJv4Iv9e7hCGs",
+    apiKey: "AIzaSyDoekpzO2dDvu7_HCf218sJv4Iv9e7hCGs", //use your own firebase api key
     authDomain: "paisekahisab-33.firebaseapp.com",
     projectId: "paisekahisab-33",
     storageBucket: "paisekahisab-33.appspot.com",
@@ -39,7 +39,7 @@ onAuthStateChanged(auth, (user) => {
     }
     else {
         alert("Create Account first & login");
-        window.location.href = "index.html";
+        window.location.href = "../index.html";
     }
 })
 // updateUserProfile()
