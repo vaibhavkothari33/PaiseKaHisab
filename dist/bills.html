@@ -96,107 +96,82 @@
         </div>  
       </nav>
 
+      
       <script>
-        // // Load bills from localStorage or initialize an empty array if no bills are saved
-        // let bills = JSON.parse(localStorage.getItem('bills')) || [];
-      
-        // // Function to render bills in the table
-        // function renderBills() {
-        //   const billTableBody = document.querySelector('#transactionTable tbody');
-        //   billTableBody.innerHTML = '';  // Clear the table body
-      
-        //   let totalAmount = 0;
-      
-        //   bills.forEach((bill, index) => {
-        //     const billRow = document.createElement('tr');
-        //     billRow.innerHTML = `
-        //       <td class="border px-4 py-2">${bill.date}</td>
-        //       <td class="border px-4 py-2">${bill.category}</td>
-        //       <td class="border px-4 py-2">₹${bill.amount}</td>
-        //       <td class="border px-4 py-2">
-        //           <button class="bg-red-500 text-white py-1 px-2 rounded" onclick="deleteBill(${index})">
-        //               Delete
-        //           </button>
-        //       </td>
-        //     `;
-        //     billTableBody.appendChild(billRow);
-        //     totalAmount += parseFloat(bill.amount);
-        //   });
-
-        //   function calculateTotalBillAmount() {
-        //     let totalBillAmount = 0;
-        //     bills.forEach(bill => {
-        //       totalBillAmount += bill.amount;
-        //     });
-        //     localStorage.setItem('totalBillAmount', totalBillAmount);
-        //   }
-      
-        //   // Append total row
-        //   const totalRow = document.createElement('tr');
-        //   totalRow.innerHTML = `
-        //     <td class="border px-4 py-2 font-bold text-right" colspan="3">Total Spent:</td>
-        //     <td class="border px-4 py-2 font-bold">₹${totalAmount.toFixed(2)}</td>
-        //   `;
-        //   billTableBody.appendChild(totalRow);
-        // }
-      
-        // // Function to add a bill
-        // function addBill() {
-        //   const amount = parseFloat(document.getElementById('expenseAmount').value);
-        //   const dueDate = document.getElementById('dueDate').value;
-        //   const billCategory = document.getElementById('billCategory').value;
-      
-        //   if (!billCategory || isNaN(amount) || !dueDate) {
-        //     alert('Please fill out all fields.');
-        //     return;
-        //   }
-      
-        //   // Create a new bill object
-        //   const bill = {
-        //     date: dueDate,
-        //     category: billCategory,
-        //     amount: amount.toFixed(2), // Round to 2 decimal places
-        //   };
-      
-        //   // Add bill to the array
-        //   bills.push(bill);
-      
-        //   // Save updated bills to localStorage
-        //   localStorage.setItem('bills', JSON.stringify(bills));
-      
-        //   // Render updated bills
-        //   renderBills();
-        //   calculateTotalBillAmount();
-        //   // Clear input fields after adding the bill
-        //   document.getElementById('expenseAmount').value = '';
-        //   document.getElementById('dueDate').value = '';
-        //   document.getElementById('billCategory').value = '';
-        // }
-      
-        // // Function to delete a bill
-        // function deleteBill(index) {
-        //   // Remove bill at the given index
-        //   bills.splice(index, 1);
-      
-        //   // Save updated bills to localStorage
-        //   localStorage.setItem('bills', JSON.stringify(bills));
-      
-        //   // Re-render the table after deleting the bill
-        //   renderBills();
-        //   calculateTotalBillAmount();
-        // }
-      
-        // // Render bills on page load
-        // renderBills();
         let bills = JSON.parse(localStorage.getItem('bills')) || [];
+      
+        // Function to request notification permission
+        // Function to request notification permission
+        function requestNotificationPermission() {
+          if (Notification.permission === 'default') {
+            Notification.requestPermission().then(permission => {
+              if (permission !== 'granted') {
+                alert('Please enable notifications to receive bill due reminders.');
+              }else{
+                console.log('granted')
+              }
+            });
+          }
+        }
 
-// Function to render bills in the table
+        // Helper function to format date as YYYY-MM-DD (standard format for comparison)
+        function formatDateToYYYYMMDD(date) {
+          const year = date.getFullYear();
+          const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are 0-indexed
+          const day = String(date.getDate()).padStart(2, '0'); // Use local date
+
+          return `${year}-${month}-${day}`;
+        }
+
+
+        // Function to check bill due dates and send notifications
+        function checkBillDueDates() {
+          const now = new Date();
+          const formattedNow = formatDateToYYYYMMDD(now); // Current date in YYYY-MM-DD
+
+          bills.forEach(bill => {
+            const billDueDate = new Date(bill.date);
+            const formattedDueDate = formatDateToYYYYMMDD(billDueDate); // Bill due date in YYYY-MM-DD
+            console.log(formattedDueDate, formattedNow);
+            // Check if the bill is due today
+            if (formattedDueDate === formattedNow) {
+              sendNotification(`Your ${bill.category} bill of ₹${bill.amount} is due today!`);
+            }
+
+            // Check if the bill is due tomorrow
+            const oneDayAhead = new Date(now);
+            oneDayAhead.setDate(now.getDate() + 1);
+            const formattedOneDayAhead = formatDateToYYYYMMDD(oneDayAhead);
+            if (formattedDueDate === formattedOneDayAhead) {
+              sendNotification(`Your ${bill.category} bill of ₹${bill.amount} is due tomorrow!`);
+            }
+            
+            // Check if the bill is overdue
+            if (formattedDueDate < formattedNow) {
+              sendNotification(`Your ${bill.category} bill of ₹${bill.amount} was due!`);
+            }
+          });
+        }
+
+        // Function to send a notification
+        function sendNotification(message) {
+          if (Notification.permission === 'granted') {
+            new Notification('Bill Due Reminder', {
+              body: message,
+               // Optional: Add an icon for the notification
+            });
+          }
+        }
+
+
+      
+        // Function to render bills in the table
         function renderBills() {
           const billTableBody = document.querySelector('#transactionTable tbody');
           billTableBody.innerHTML = ''; // Clear the table body
-
+      
           let totalAmount = 0;
-
+      
           bills.forEach((bill, index) => {
             const billRow = document.createElement('tr');
             billRow.innerHTML = `
@@ -204,15 +179,15 @@
               <td class="border px-4 py-2">${bill.category}</td>
               <td class="border px-4 py-2">₹${bill.amount}</td>
               <td class="border px-4 py-2">
-                  <button class="bg-red-500 text-white py-1 px-2 rounded" onclick="deleteBill(${index})">
-                      Delete
-                  </button>
+                <button class="bg-red-500 text-white py-1 px-2 rounded" onclick="deleteBill(${index})">
+                  Delete
+                </button>
               </td>
             `;
             billTableBody.appendChild(billRow);
             totalAmount += parseFloat(bill.amount); // Ensure the amount is parsed as a number
           });
-
+      
           // Append total row
           const totalRow = document.createElement('tr');
           totalRow.innerHTML = `
@@ -221,75 +196,77 @@
           `;
           billTableBody.appendChild(totalRow);
         }
-
+      
         // Function to calculate total bill amount and store it in localStorage
         function calculateTotalBillAmount() {
           let totalBillAmount = 0;
-
+      
           bills.forEach(bill => {
             totalBillAmount += parseFloat(bill.amount); // Parse amount as a number
           });
-
+      
           // Save the total bill amount in localStorage
           localStorage.setItem('totalBillAmount', totalBillAmount);
-
+      
           console.log('Total Bill Amount:', totalBillAmount); // For debugging purposes
         }
-
+      
         // Function to add a bill
         function addBill() {
           const amount = parseFloat(document.getElementById('expenseAmount').value);
           const dueDate = document.getElementById('dueDate').value;
           const billCategory = document.getElementById('billCategory').value;
-
+      
           if (!billCategory || isNaN(amount) || !dueDate) {
             alert('Please fill out all fields.');
             return;
           }
-
+      
           // Create a new bill object
           const bill = {
             date: dueDate,
             category: billCategory,
             amount: amount.toFixed(2) // Store the amount as a string with two decimal places
           };
-
+      
           // Add bill to the array
           bills.push(bill);
-
+      
           // Save updated bills to localStorage
           localStorage.setItem('bills', JSON.stringify(bills));
-
+      
           // Render updated bills and calculate total bill amount
           renderBills();
           calculateTotalBillAmount();
-
+      
           // Clear input fields after adding the bill
           document.getElementById('expenseAmount').value = '';
           document.getElementById('dueDate').value = '';
           document.getElementById('billCategory').value = '';
         }
-
+      
         // Function to delete a bill
         function deleteBill(index) {
           // Remove bill at the given index
           bills.splice(index, 1);
-
+      
           // Save updated bills to localStorage
           localStorage.setItem('bills', JSON.stringify(bills));
-
+      
           // Re-render the table and calculate total bill amount after deleting the bill
           renderBills();
           calculateTotalBillAmount();
         }
-
-        // Render bills on page load
+      
+        // Render bills and check due dates on page load
         window.addEventListener('load', () => {
+          requestNotificationPermission(); // Request permission for notifications
           renderBills();
           calculateTotalBillAmount(); // Ensure totalBillAmount is updated on page load
+          checkBillDueDates(); // Check due dates for notifications
         });
-
       </script>
+      
       
       
 
