@@ -1,10 +1,16 @@
-
+import dotenv from 'dotenv';
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-app.js";
 import { getAuth, onAuthStateChanged,signOut } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-auth.js";
 
+dotenv.config(
+    {
+        path: '../.env'
+    }
+)
+
 const firebaseConfig = {
-    apiKey: "AIzaSyDoekpzO2dDvu7_HCf218sJv4Iv9e7hCGs",
+    apiKey: process.env.FIREBASE_API,
     authDomain: "paisekahisab-33.firebaseapp.com",
     projectId: "paisekahisab-33",
     storageBucket: "paisekahisab-33.appspot.com",
