@@ -1,2 +1,6 @@
 node_modules
 .vscode
+# uncomment this after u have saved the .env file locally
+# .env
+# *.env
+# .env*
