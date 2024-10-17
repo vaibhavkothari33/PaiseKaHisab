@@ -13,6 +13,16 @@
       Add Bills
     </h1>
 
+    <div id="customAlert" class="hidden fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+      <div class="bg-white p-6 rounded-lg shadow-lg max-w-sm text-center">
+        <h3 class="text-lg font-bold mb-4">Incomplete Information</h3>
+        <p class="mb-4">Please fill out all fields: amount, due date, and bill category.</p>
+        <button id="closeAlert" class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md">
+          Close
+        </button>
+      </div>
+    </div>
+
     <!-- Centered content -->
     <main class="flex-1 flex flex-col items-center justify-center p-4">
       <!-- Input Section -->
@@ -113,6 +123,21 @@
             });
           }
         }
+
+        // Function to display custom alert
+      function showAlert() {
+        const alertBox = document.getElementById('customAlert');
+        alertBox.classList.remove('hidden');
+      }
+
+      // Function to hide custom alert
+      function hideAlert() {
+        const alertBox = document.getElementById('customAlert');
+        alertBox.classList.add('hidden');
+      }
+
+      document.getElementById('closeAlert').addEventListener('click', hideAlert);
+
 
         // Helper function to format date as YYYY-MM-DD (standard format for comparison)
         function formatDateToYYYYMMDD(date) {
@@ -218,9 +243,10 @@
           const billCategory = document.getElementById('billCategory').value;
       
           if (!billCategory || isNaN(amount) || !dueDate) {
-            alert('Please fill out all fields.');
-            return;
-          }
+          showAlert();
+          return;
+        }
+
       
           // Create a new bill object
           const bill = {
