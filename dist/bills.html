@@ -53,6 +53,9 @@
           <button id="addExpense" class="bg-green-500 hover:bg-green-600 text-white p-2 rounded-lg" onclick="addBill()">
             Add Bill
           </button>
+          <button id="updateExpense" class="bg-blue-500 hover:bg-blue-600 text-white p-2 rounded-lg ml-4 hidden" onclick="updateBill()">
+            Update Bill
+          </button>
         </div>
       </div>
     </main>
@@ -109,7 +112,7 @@
       
       <script>
         let bills = JSON.parse(localStorage.getItem('bills')) || [];
-      
+        let editingIndex = -1;
         // Function to request notification permission
         // Function to request notification permission
         function requestNotificationPermission() {
@@ -204,6 +207,9 @@
               <td class="border px-4 py-2">${bill.category}</td>
               <td class="border px-4 py-2">₹${bill.amount}</td>
               <td class="border px-4 py-2">
+                <button class="bg-blue-500 text-white py-1 px-2 rounded mr-2" onclick="editBill(${index})">
+                  Edit
+                </button>
                 <button class="bg-red-500 text-white py-1 px-2 rounded" onclick="deleteBill(${index})">
                   Delete
                 </button>
@@ -270,6 +276,62 @@
           document.getElementById('dueDate').value = '';
           document.getElementById('billCategory').value = '';
         }
+
+        function editBill(index) {
+        const bill = bills[index];
+        
+        // Populate the form fields with the selected bill's data
+        document.getElementById('expenseAmount').value = bill.amount;
+        document.getElementById('dueDate').value = bill.date;
+        document.getElementById('billCategory').value = bill.category;
+
+        // Show the update button and hide the add button
+        document.getElementById('addExpense').classList.add('hidden');
+        document.getElementById('updateExpense').classList.remove('hidden');
+
+        // Set the index for the bill being edited
+        editingIndex = index;
+      }
+
+      // Function to update a bill
+      function updateBill() {
+        const amount = parseFloat(document.getElementById('expenseAmount').value);
+        const dueDate = document.getElementById('dueDate').value;
+        const billCategory = document.getElementById('billCategory').value;
+
+        if (!billCategory || isNaN(amount) || !dueDate) {
+          showAlert();
+          return;
+        }
+
+        // Update the selected bill's data
+        bills[editingIndex] = {
+          date: dueDate,
+          category: billCategory,
+          amount: amount.toFixed(2)
+        };
+
+        // Save updated bills to localStorage
+        localStorage.setItem('bills', JSON.stringify(bills));
+
+        // Render updated bills and calculate total bill amount
+        renderBills();
+        calculateTotalBillAmount();
+
+        // Reset the form and hide the update button
+        clearInputFields();
+
+        // Switch back to "Add" mode
+        document.getElementById('addExpense').classList.remove('hidden');
+        document.getElementById('updateExpense').classList.add('hidden');
+        editingIndex = -1; // Reset the editing index
+      }
+      // Function to clear input fields
+      function clearInputFields() {
+        document.getElementById('expenseAmount').value = '';
+        document.getElementById('dueDate').value = '';
+        document.getElementById('billCategory').value = '';
+      }
       
         // Function to delete a bill
         function deleteBill(index) {
