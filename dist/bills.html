@@ -23,21 +23,19 @@
       </div>
     </div>
 
-    <!-- Centered content -->
     <main class="flex-1 flex flex-col items-center justify-center p-4">
-      <!-- Input Section -->
       <div class="w-full max-w-lg">
         <div class="mb-6">
           <div class="grid grid-cols-1 md:grid-cols-1 gap-4 mb-4">
-            <input type="number" id="expenseAmount" class="p-2 rounded-md text-black w-full" placeholder="Enter amount" />
+            <input type="number" id="expenseAmount" class="p-4 rounded-md text-black w-full" placeholder="Enter amount" />
           </div>
           <div class="grid grid-cols-1 md:grid-cols-1 gap-4 mb-4">
             <label for="dueDate" class="text-white">Select due date:</label>
-            <input type="date" id="dueDate" class="p-2 rounded-md text-black w-full">
+            <input type="date" id="dueDate" class="p-4 rounded-md text-black w-full">
           </div>
           <div class="grid grid-cols-1 md:grid-cols-1 gap-4 mb-4">
             <label for="billCategory" class="text-white">Select Bill Category:</label>
-            <select id="billCategory" class="p-2 rounded-md text-black w-full">
+            <select id="billCategory" class="p-4 rounded-md text-black w-full">
               <option value="">Select Bill</option>
               <option value="Electricity Bill">Electricity Bill</option>
               <option value="Gas Bill">Gas Bill</option>
@@ -50,7 +48,7 @@
         </div>
 
         <div class="flex justify-center">
-          <button id="addExpense" class="bg-green-500 hover:bg-green-600 text-white p-2 rounded-lg" onclick="addBill()">
+          <button id="addExpense" class="bg-blue-500 hover:bg-blue-600 text-white p-2 rounded-lg" onclick="addBill()">
             Add Bill
           </button>
         </div>
@@ -72,6 +70,7 @@
         <!-- Transactions will be dynamically added here -->
       </tbody>
     </table>
+
     <nav class="fixed bottom-0 left-0 right-0 bg-gray-800 z-50">
         <div class="flex justify-around items-center p-2">
           <a href="home.html" class="text-gray-400 flex flex-col items-center"
@@ -91,46 +90,36 @@
             <span class="text-xs">Savings</span>
           </a>
           <a href="bills.html" class="text-green-400 flex flex-col items-center">
-         
             <i class="fa-solid fa-file-invoice-dollar p-2"></i>
-         
             <span class="text-xs">Bills</span>
           </a>
           <a href="profile.html" class="text-gray-400 flex flex-col items-center">
-         
             <i class="fa-solid fa-user p-2"></i>
-         
             <span class="text-xs">Profile</span>
           </a>
-          
         </div>  
-      </nav>
+    </nav>
 
+    <script>
+      let bills = JSON.parse(localStorage.getItem('bills')) || [];
       
-      <script>
-        let bills = JSON.parse(localStorage.getItem('bills')) || [];
-      
-        // Function to request notification permission
-        // Function to request notification permission
-        function requestNotificationPermission() {
-          if (Notification.permission === 'default') {
-            Notification.requestPermission().then(permission => {
-              if (permission !== 'granted') {
-                alert('Please enable notifications to receive bill due reminders.');
-              }else{
-                console.log('granted')
-              }
-            });
-          }
+      function requestNotificationPermission() {
+        if (Notification.permission === 'default') {
+          Notification.requestPermission().then(permission => {
+            if (permission !== 'granted') {
+              alert('Please enable notifications to receive bill due reminders.');
+            } else {
+              console.log('granted');
+            }
+          });
         }
+      }
 
-        // Function to display custom alert
       function showAlert() {
         const alertBox = document.getElementById('customAlert');
         alertBox.classList.remove('hidden');
       }
 
-      // Function to hide custom alert
       function hideAlert() {
         const alertBox = document.getElementById('customAlert');
         alertBox.classList.add('hidden');
@@ -138,163 +127,122 @@
 
       document.getElementById('closeAlert').addEventListener('click', hideAlert);
 
+      function formatDateToYYYYMMDD(date) {
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+        return `${year}-${month}-${day}`;
+      }
 
-        // Helper function to format date as YYYY-MM-DD (standard format for comparison)
-        function formatDateToYYYYMMDD(date) {
-          const year = date.getFullYear();
-          const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are 0-indexed
-          const day = String(date.getDate()).padStart(2, '0'); // Use local date
-
-          return `${year}-${month}-${day}`;
-        }
-
-
-        // Function to check bill due dates and send notifications
-        function checkBillDueDates() {
-          const now = new Date();
-          const formattedNow = formatDateToYYYYMMDD(now); // Current date in YYYY-MM-DD
-
-          bills.forEach(bill => {
-            const billDueDate = new Date(bill.date);
-            const formattedDueDate = formatDateToYYYYMMDD(billDueDate); // Bill due date in YYYY-MM-DD
-            console.log(formattedDueDate, formattedNow);
-            // Check if the bill is due today
-            if (formattedDueDate === formattedNow) {
-              sendNotification(`Your ${bill.category} bill of ₹${bill.amount} is due today!`);
-            }
-
-            // Check if the bill is due tomorrow
-            const oneDayAhead = new Date(now);
-            oneDayAhead.setDate(now.getDate() + 1);
-            const formattedOneDayAhead = formatDateToYYYYMMDD(oneDayAhead);
-            if (formattedDueDate === formattedOneDayAhead) {
-              sendNotification(`Your ${bill.category} bill of ₹${bill.amount} is due tomorrow!`);
-            }
-            
-            // Check if the bill is overdue
-            if (formattedDueDate < formattedNow) {
-              sendNotification(`Your ${bill.category} bill of ₹${bill.amount} was due!`);
-            }
-          });
-        }
-
-        // Function to send a notification
-        function sendNotification(message) {
-          if (Notification.permission === 'granted') {
-            new Notification('Bill Due Reminder', {
-              body: message,
-               // Optional: Add an icon for the notification
-            });
+      function checkBillDueDates() {
+        const now = new Date();
+        const formattedNow = formatDateToYYYYMMDD(now);
+        bills.forEach(bill => {
+          const billDueDate = new Date(bill.date);
+          const formattedDueDate = formatDateToYYYYMMDD(billDueDate);
+          if (formattedDueDate === formattedNow) {
+            sendNotification(`Your ${bill.category} bill of ₹${bill.amount} is due today!`);
           }
-        }
+          const oneDayAhead = new Date(now);
+          oneDayAhead.setDate(now.getDate() + 1);
+          const formattedOneDayAhead = formatDateToYYYYMMDD(oneDayAhead);
+          if (formattedDueDate === formattedOneDayAhead) {
+            sendNotification(`Your ${bill.category} bill of ₹${bill.amount} is due tomorrow!`);
+          }
+          if (formattedDueDate < formattedNow) {
+            sendNotification(`Your ${bill.category} bill of ₹${bill.amount} was due!`);
+          }
+        });
+      }
 
-
-      
-        // Function to render bills in the table
-        function renderBills() {
-          const billTableBody = document.querySelector('#transactionTable tbody');
-          billTableBody.innerHTML = ''; // Clear the table body
-      
-          let totalAmount = 0;
-      
-          bills.forEach((bill, index) => {
-            const billRow = document.createElement('tr');
-            billRow.innerHTML = `
-              <td class="border px-4 py-2">${bill.date}</td>
-              <td class="border px-4 py-2">${bill.category}</td>
-              <td class="border px-4 py-2">₹${bill.amount}</td>
-              <td class="border px-4 py-2">
-                <button class="bg-red-500 text-white py-1 px-2 rounded" onclick="deleteBill(${index})">
-                  Delete
-                </button>
-              </td>
-            `;
-            billTableBody.appendChild(billRow);
-            totalAmount += parseFloat(bill.amount); // Ensure the amount is parsed as a number
+      function sendNotification(message) {
+        if (Notification.permission === 'granted') {
+          new Notification('Bill Due Reminder', {
+            body: message,
           });
-      
-          // Append total row
-          const totalRow = document.createElement('tr');
-          totalRow.innerHTML = `
-            <td class="border px-4 py-2 font-bold text-right" colspan="3">Total Spent:</td>
-            <td class="border px-4 py-2 font-bold">₹${totalAmount.toFixed(2)}</td>
+        }
+      }
+
+      function renderBills() {
+        const billTableBody = document.querySelector('#transactionTable tbody');
+        billTableBody.innerHTML = '';
+        let totalAmount = 0;
+        bills.forEach((bill, index) => {
+          const billRow = document.createElement('tr');
+          billRow.innerHTML = `
+            <td class="border px-4 py-2">${bill.date}</td>
+            <td class="border px-4 py-2">${bill.category}</td>
+            <td class="border px-4 py-2">₹${bill.amount}</td>
+            <td class="border px-4 py-2">
+              <button class="bg-red-500 text-white py-1 px-2 rounded" onclick="deleteBill(${index})">
+                Delete
+              </button>
+            </td>
           `;
-          billTableBody.appendChild(totalRow);
+          billTableBody.appendChild(billRow);
+          totalAmount += parseFloat(bill.amount);
+        });
+        
+        if (bills.length === 0) {
+          billTableBody.innerHTML = '<tr><td colspan="4" class="text-center">No bills added.</td></tr>';
         }
-      
-        // Function to calculate total bill amount and store it in localStorage
-        function calculateTotalBillAmount() {
-          let totalBillAmount = 0;
-      
-          bills.forEach(bill => {
-            totalBillAmount += parseFloat(bill.amount); // Parse amount as a number
-          });
-      
-          // Save the total bill amount in localStorage
-          localStorage.setItem('totalBillAmount', totalBillAmount);
-      
-          console.log('Total Bill Amount:', totalBillAmount); // For debugging purposes
-        }
-      
-        // Function to add a bill
-        function addBill() {
-          const amount = parseFloat(document.getElementById('expenseAmount').value);
-          const dueDate = document.getElementById('dueDate').value;
-          const billCategory = document.getElementById('billCategory').value;
-      
-          if (!billCategory || isNaN(amount) || !dueDate) {
+
+        const totalRow = document.createElement('tr');
+        totalRow.innerHTML = `
+          <td colspan="2" class="text-right font-bold">Total Amount:</td>
+          <td colspan="2" class="font-bold">₹${totalAmount.toFixed(2)}</td>
+        `;
+        billTableBody.appendChild(totalRow);
+      }
+
+      function addBill() {
+        const amount = document.getElementById('expenseAmount').value;
+        const date = document.getElementById('dueDate').value;
+        const category = document.getElementById('billCategory').value;
+
+        if (!amount || !date || !category) {
           showAlert();
           return;
         }
 
-      
-          // Create a new bill object
-          const bill = {
-            date: dueDate,
-            category: billCategory,
-            amount: amount.toFixed(2) // Store the amount as a string with two decimal places
-          };
-      
-          // Add bill to the array
-          bills.push(bill);
-      
-          // Save updated bills to localStorage
-          localStorage.setItem('bills', JSON.stringify(bills));
-      
-          // Render updated bills and calculate total bill amount
-          renderBills();
-          calculateTotalBillAmount();
-      
-          // Clear input fields after adding the bill
-          document.getElementById('expenseAmount').value = '';
-          document.getElementById('dueDate').value = '';
-          document.getElementById('billCategory').value = '';
+        const dueDate = new Date(date);
+        const now = new Date();
+        if (dueDate < now) {
+          alert('Due date cannot be in the past.');
+          return;
         }
-      
-        // Function to delete a bill
-        function deleteBill(index) {
-          // Remove bill at the given index
-          bills.splice(index, 1);
-      
-          // Save updated bills to localStorage
-          localStorage.setItem('bills', JSON.stringify(bills));
-      
-          // Re-render the table and calculate total bill amount after deleting the bill
-          renderBills();
-          calculateTotalBillAmount();
-        }
-      
-        // Render bills and check due dates on page load
-        window.addEventListener('load', () => {
-          requestNotificationPermission(); // Request permission for notifications
-          renderBills();
-          calculateTotalBillAmount(); // Ensure totalBillAmount is updated on page load
-          checkBillDueDates(); // Check due dates for notifications
-        });
-      </script>
-      
-      
-      
 
+        if (parseFloat(amount) < 0) {
+          alert('Amount cannot be negative.');
+          return;
+        }
+
+        const bill = {
+          amount,
+          date,
+          category,
+        };
+
+        bills.push(bill);
+        localStorage.setItem('bills', JSON.stringify(bills));
+        renderBills();
+        requestNotificationPermission();
+        checkBillDueDates();
+
+        document.getElementById('expenseAmount').value = '';
+        document.getElementById('dueDate').value = '';
+        document.getElementById('billCategory').value = '';
+      }
+
+      function deleteBill(index) {
+        if (index >= 0 && index < bills.length) {
+          bills.splice(index, 1);
+          localStorage.setItem('bills', JSON.stringify(bills));
+          renderBills();
+        }
+      }
+
+      renderBills();
+    </script>
   </body>
 </html>
