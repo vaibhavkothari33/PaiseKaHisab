@@ -1,118 +1,140 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Savings</title>
-    <link rel="stylesheet" href="output.css" />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script defer src="../js/UI.js"></script>
-    <link rel="shortcut icon" type="x-icon" href="./images/money.png" />
-    <script defer type="module" src="../js/login3.js"></script>
-    <script defer type="module" src="../js/login.js"></script>
-    <link rel="stylesheet" href="../src/login.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
-      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-  </head>
-  <body class="bg-gray-900 flex items-center justify-center min-h-screen">
-    <div class="bg-gray-900  max-w-md w-full">
-      <h1
-      class="text-2xl font-serif mt-4 mb-8 flex justify-center font-bold text-center text-white">
-      Savings
-    </h1>
-    <!-- <h1 class="text-2xl font-serif text-white mt-4 text-center mb-8">Savings</h1> -->
-    <!-- <p class="text-white flex justify-center font-serif mt-10 text-lg">Plan your daily spending and</p>
-    <p class="text-white flex justify-center font-serif  text-lg">&</p>
-    <p class="text-white flex justify-center font-serif pb-10 text-lg"> reach your savings goal!</p> -->
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Savings</title>
+  <link rel="stylesheet" href="output.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script defer src="../js/UI.js"></script>
+  <link rel="shortcut icon" type="x-icon" href="./images/money.png" />
+  <script defer type="module" src="../js/login3.js"></script>
+  <script defer type="module" src="../js/login.js"></script>
+  <link rel="stylesheet" href="../src/login.css" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+</head>
+<body class="bg-gray-900 flex items-center justify-center min-h-screen">
+  <div class="flex flex-col lg:flex-row space-y-6 lg:space-y-0 lg:space-x-10">
+    <!-- Savings Section -->
+    <div class="bg-gray-900 max-w-md w-full">
+      <h1 class="text-2xl font-serif mt-4 mb-8 flex justify-center font-bold text-center text-white">
+        Savings
+      </h1>
 
-        <div class="mb-4">
-            <label for="budget" class="block text-sm font-bold text-white text-center">Monthly Budget:</label>
-            <input type="number" id="budget" placeholder="3000"
-                class="mt-1 block w-56 mx-auto px-3 py-2 text-white border bg-gray-950 border-gray-950 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm " />
-        </div>
+      <div class="mb-4">
+        <label for="budget" class="block text-sm font-bold text-white text-center">Monthly Budget:</label>
+        <input type="number" id="budget" placeholder="3000"
+               class="mt-1 block w-56 mx-auto px-3 py-2 text-white border bg-gray-950 border-gray-950 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+      </div>
 
-        <div class="mb-4">
-            <label for="goal" class="block text-sm font-bold text-white text-center">Goal Amount (optional):</label>
-            <input type="number" id="goal" placeholder="16000"
-                class="mt-1 block w-56 mx-auto px-3 py-2 text-white border bg-gray-950 border-gray-950 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
-        </div>
+      <div class="mb-4">
+        <label for="goal" class="block text-sm font-bold text-white text-center">Goal Amount (optional):</label>
+        <input type="number" id="goal" placeholder="16000"
+               class="mt-1 block w-56 mx-auto px-3 py-2 text-white border bg-gray-950 border-gray-950 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+      </div>
 
-        <div class="mb-6">
-            <label for="save" class="block text-sm font-bold text-white text-center">Monthly Savings:</label>
-            <input type="number" id="save" placeholder="1250"
-                class="mt-1 block w-56 mx-auto px-3 py-2 text-white border bg-gray-950 border-gray-950 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
-        </div>
+      <div class="mb-6">
+        <label for="save" class="block text-sm font-bold text-white text-center">Monthly Savings:</label>
+        <input type="number" id="save" placeholder="1250"
+               class="mt-1 block w-56 mx-auto px-3 py-2 text-white border bg-gray-950 border-gray-950 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+      </div>
 
-        <div class="flex justify-center">
-            <button id="submit"
+      <div class="flex justify-center">
+        <button id="submit"
                 class="bg-indigo-600 text-white py-2 px-8 rounded-lg font-semibold hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50 transition">Calculate
-                Savings</button>
-        </div>
+          Savings</button>
+      </div>
 
-        <div id="result" class="mt-6 text-center text-white font-semibold"></div>
+      <div id="result" class="mt-6 text-center text-white font-semibold"></div>
 
-        <!-- Personalized Savings Tips -->
-        <div id="tips" class="mt-6 p-4 bg-green-200 rounded-lg text-center w-96 flex justify-center mx-auto  ">
-          <h2 class="text-lg font-bold text-blue-700">Personalized Savings Tips</h2>
-          <p id="advice" class="text-gray-950 mt-2">Enter your details to get personalized advice!</p>
+      <!-- Personalized Savings Tips -->
+      <div id="tips" class="mt-6 p-4 bg-green-200 rounded-lg text-center w-96 flex justify-center mx-auto">
+        <h2 class="text-lg font-bold text-blue-700">Personalized Savings Tips</h2>
+        <p id="advice" class="text-gray-950 mt-2">Enter your details to get personalized advice!</p>
       </div>
 
       <!-- Savings Goal Countdown -->
-      <div id="countdown" class="mt-6  mb-40 p-4 bg-yellow-200 rounded-lg text-center mx-auto w-96 flex justify-center max-w-md">
-          <h2 class="text-lg font-bold text-yellow-700">Savings Goal Countdown</h2>
-          <p id="days-left" class="text-gray-900 mt-2">Start saving to see your countdown!</p>
+      <div id="countdown" class="mt-6 mb-40 p-4 bg-yellow-200 rounded-lg text-center mx-auto w-96 flex justify-center max-w-md">
+        <h2 class="text-lg font-bold text-yellow-700">Savings Goal Countdown</h2>
+        <p id="days-left" class="text-gray-900 mt-2">Start saving to see your countdown!</p>
       </div>
     </div>
- <!-- Bottom Nav for Mobile -->
 
-    <nav class="fixed bottom-0 left-0 right-0 bg-gray-800 z-50">
-      <div class="flex justify-around items-center p-2">
-        <a href="home.html" class="text-gray-400 flex flex-col items-center"
-          ><i class="fa-solid fa-house p-2"></i>
-          <span class="text-xs">Home</span>
-        </a>
-        <a href="loan.html" class="text-gray-400 flex flex-col items-center">
-          <i class="fa-solid fa-landmark p-2"></i>
-          <span class="text-xs">Lend</span>
-        </a>
-        <a href="expence.html" class="text-gray-400 flex flex-col items-center"
-          ><i class="fa-solid fa-money-check-dollar p-2"></i>
-          <span class="text-xs">Expenses</span>
-        </a>
-        <a
-          href="savings.html"
-          class="text-green-400 flex flex-col items-center"
-        >
-          <i class="fa-solid fa-piggy-bank p-2"></i>
-          <span class="text-xs">Savings</span>
-        </a>
-        <a href="bills.html" class="text-gray-400 flex flex-col items-center">
-         
-          <i class="fa-solid fa-file-invoice-dollar p-2"></i>
-       
-          <span class="text-xs">Bills</span>
-        </a>
-        <a href="sip.html" class="text-gray-400 flex flex-col items-center">
-         
-          <i class="fa-solid fa-arrow-up-right-dots p-2"></i>
-       
-          <span class="text-xs">SIP Calculator</span>
-        </a>
-        <a href="profile.html" class="text-gray-400 flex flex-col items-center">
-       
-          <i class="fa-solid fa-user p-2"></i>
-       
-          <span class="text-xs">Profile</span>
-        </a>
-        
+    <div class="bg-gray-900 max-w-md w-full">
+      <h1 class="text-2xl font-serif mt-4 mb-8 flex justify-center font-bold text-center text-white">
+        SIP Calculator
+      </h1>
+
+      <div class="mb-4">
+        <label for="sipAmount" class="block text-sm font-bold text-white text-center">Monthly Investment:</label>
+        <input type="number" id="sipAmount" placeholder="5000"
+               class="mt-1 block w-56 mx-auto px-3 py-2 text-white border bg-gray-950 border-gray-950 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
       </div>
-    </nav>
-  </body>
-  <script defer src="../js/saving.js"></script>
+
+      <div class="mb-4">
+        <label for="rate" class="block text-sm font-bold text-white text-center">Expected Rate of Return (%):</label>
+        <input type="number" id="rate" placeholder="12"
+               class="mt-1 block w-56 mx-auto px-3 py-2 text-white border bg-gray-950 border-gray-950 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+      </div>
+
+      <div class="mb-6">
+        <label for="duration" class="block text-sm font-bold text-white text-center">Investment Duration (years):</label>
+        <input type="number" id="duration" placeholder="10"
+               class="mt-1 block w-56 mx-auto px-3 py-2 text-white border bg-gray-950 border-gray-950 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+      </div>
+
+      <div class="flex justify-center">
+        <button id="calculateSIP"
+                class="bg-indigo-600 text-white py-2 px-8 rounded-lg font-semibold hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50 transition">Calculate
+          SIP</button>
+      </div>
+
+      <div id="sipResult" class="mt-6 text-center text-white font-semibold"></div>
+
+      <!-- Graph Container -->
+      <div class="mt-8">
+        <canvas id="sipChart" class="w-full h-64"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Nav for Mobile -->
+  <nav class="fixed bottom-0 left-0 right-0 bg-gray-800 z-50">
+    <div class="flex justify-around items-center p-2">
+      <a href="home.html" class="text-gray-400 flex flex-col items-center">
+        <i class="fa-solid fa-house p-2"></i>
+        <span class="text-xs">Home</span>
+      </a>
+      <a href="loan.html" class="text-gray-400 flex flex-col items-center">
+        <i class="fa-solid fa-landmark p-2"></i>
+        <span class="text-xs">Lend</span>
+      </a>
+      <a href="expence.html" class="text-gray-400 flex flex-col items-center">
+        <i class="fa-solid fa-money-check-dollar p-2"></i>
+        <span class="text-xs">Expenses</span>
+      </a>
+      <a href="savings.html" class="text-green-400 flex flex-col items-center">
+        <i class="fa-solid fa-piggy-bank p-2"></i>
+        <span class="text-xs">Savings</span>
+      </a>
+      <a href="bills.html" class="text-gray-400 flex flex-col items-center">
+        <i class="fa-solid fa-file-invoice-dollar p-2"></i>
+        <span class="text-xs">Bills</span>
+      </a>
+      
+      <a href="profile.html" class="text-gray-400 flex flex-col items-center">
+        <i class="fa-solid fa-user p-2"></i>
+        <span class="text-xs">Profile</span>
+      </a>
+    </div>
+  </nav>
+</body>
+<script defer src="../js/saving.js"></script>
 </html>

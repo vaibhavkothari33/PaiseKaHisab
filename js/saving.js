@@ -27,3 +27,103 @@ document.getElementById('submit').addEventListener('click', function () {
         document.getElementById('days-left').textContent = "Set a goal to see your savings countdown!";
     }
 });
+
+// Select DOM elements
+const sipAmountInput = document.getElementById("sipAmount");
+const rateInput = document.getElementById("rate");
+const durationInput = document.getElementById("duration");
+const calculateSIPButton = document.getElementById("calculateSIP");
+const sipResult = document.getElementById("sipResult");
+const sipChartCanvas = document.getElementById("sipChart");
+
+// Function to calculate SIP maturity amount
+function calculateSIP() {
+  const monthlyInvestment = parseFloat(sipAmountInput.value);
+  const annualRate = parseFloat(rateInput.value);
+  const years = parseInt(durationInput.value);
+
+  if (isNaN(monthlyInvestment) || isNaN(annualRate) || isNaN(years)) {
+    sipResult.textContent = "Please enter valid numbers for all fields.";
+    return;
+  }
+
+  const monthlyRate = annualRate / 12 / 100;
+  const totalMonths = years * 12;
+
+  const maturityAmount =
+    monthlyInvestment * ((Math.pow(1 + monthlyRate, totalMonths) - 1) / monthlyRate) * (1 + monthlyRate);
+
+  sipResult.textContent = `Maturity Amount: ₹${maturityAmount.toFixed(2)}`;
+
+  // Generate SIP data for each year
+  const labels = Array.from({ length: years + 1 }, (_, i) => `${i} Year${i === 1 ? '' : 's'}`);
+  const data = [];
+  let currentBalance = 0;
+
+  for (let month = 0; month <= totalMonths; month++) {
+    currentBalance += monthlyInvestment;
+    currentBalance *= 1 + monthlyRate;
+
+    if (month % 12 === 0) {
+      data.push(currentBalance.toFixed(2));
+    }
+  }
+
+  updateChart(labels, data);
+}
+
+// Function to create or update Chart.js graph
+let sipChart;
+function updateChart(labels, data) {
+  if (sipChart) {
+    sipChart.destroy();
+  }
+
+  sipChart = new Chart(sipChartCanvas, {
+    type: "line",
+    data: {
+      labels: labels,
+      datasets: [
+        {
+          label: "Projected Investment Growth",
+          data: data,
+          fill: false,
+          borderColor: "rgba(75, 192, 192, 1)",
+          tension: 0.1,
+        },
+      ],
+    },
+    options: {
+      responsive: true,
+      scales: {
+        x: {
+          title: {
+            display: true,
+            text: "Years",
+            color: "#ffffff",
+          },
+        },
+        y: {
+          title: {
+            display: true,
+            text: "Amount (₹)",
+            color: "#ffffff",
+          },
+          ticks: {
+            color: "#ffffff",
+          },
+        },
+      },
+      plugins: {
+        legend: {
+          labels: {
+            color: "#ffffff",
+          },
+        },
+      },
+    },
+  });
+}
+
+// Event listener for the "Calculate SIP" button
+calculateSIPButton.addEventListener("click", calculateSIP);
