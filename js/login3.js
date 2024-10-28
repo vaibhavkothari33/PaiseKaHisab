@@ -31,26 +31,31 @@ function updateUserProfile(user) {
     document.getElementById("userProfilePicture").src = userProfilePicture;
     // document.getElementById("userProfilePicture1").src = userProfilePicture1;
 }
+let manualLogout = false; // Flag to track manual logout
+
+// Listen for auth state changes
 onAuthStateChanged(auth, (user) => {
     if (user) {
         updateUserProfile(user);
-        const uid = user.uid;
-        return uid;
+    } else {
+        // Check if this is a manual logout
+        if (!manualLogout) {
+            alert("Create Account first & login");
+            window.location.href = "../index.html";
+        }
     }
-    else {
-        alert("Create Account first & login");
-        window.location.href = "../index.html";
-    }
-})
-// updateUserProfile()
+});
+
+// Logout button click event
 const logoutButton = document.getElementById('logout');
 logoutButton.addEventListener('click', () => {
+    manualLogout = true; // Set flag for manual logout
     signOut(auth).then(() => {
-        // Sign-out successful.
-        window.location.href = '../index.html'; // Redirect to login page or home page
+        alert('Logged Out Successfully')
+        window.location.href = '../index.html';
     }).catch((error) => {
-        // An error happened.
         console.error('Logout Error:', error.message);
         alert('Error logging out. Please try again.');
     });
 });
+
