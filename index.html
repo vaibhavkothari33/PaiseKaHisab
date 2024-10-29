@@ -7,59 +7,82 @@
   <link rel="stylesheet" href="./dist/output.css" />
   <link rel="shortcut icon" type="image/x-icon" href="./images/money.png">
   <script src="./js/login.js" defer type="module"></script>
+  <style>
+    /* Animation styles */
+    @keyframes fadeInSlide {
+      0% {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes zoomIn {
+      0% {
+        transform: scale(0.8);
+        opacity: 0;
+      }
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+    
+    .heading {
+      animation: fadeInSlide 1.2s ease forwards;
+    }
+    
+    .image {
+      animation: zoomIn 1.5s ease forwards;
+    }
+    
+    .button {
+      transition: transform 0.3s ease;
+    }
+    
+    .button:hover {
+      transform: scale(1.05);
+    }
+  </style>
 </head>
 <body class="bg-gray-900 flex flex-col items-center justify-center min-h-screen p-4">
-    <div class="w-48 h-48 flex items-center justify-center">
-        <img src="./images/money.png" alt="Money" width="600px" height="600px"></div>
-  <h1 class="text-white font-bold text-2xl text-center mb-4 md:text-3xl">
+  <div class="w-48 h-48 flex items-center justify-center image">
+    <img src="./images/money.png" alt="Money" width="600px" height="600px">
+  </div>
+  
+  <h1 class="text-white font-bold text-2xl text-center mb-4 md:text-3xl heading">
     Track your expenses with <span class="italic">ease</span>.
   </h1>
-  <h2 class="text-white font-bold text-xl text-center mb-8 md:text-2xl">
+  <h2 class="text-white font-bold text-xl text-center mb-8 md:text-2xl heading">
     Get your free account
   </h2>
-  <div class="flex flex-col md:flex-row md:gap-4 " >
-
-      <!-- <a href="./dist/home.html"> -->
-          <button id="google-sign"
-          class="flex items-center justify-center w-full max-w-xs p-3 bg-white text-black rounded-md gap-x-2 text-sm font-medium border border-gray-300 hover:border-gray-500 focus:outline-none focus:border-gray-500 mb-4"
-  >
-  <img
-  src="https://google.com/favicon.ico"
-      alt="Google logo"
-      class="w-5 h-5"
-      />
-      Sign in with Google
-  </button>
-<!-- </a> -->
-<!-- <a href="./dist/home.html"> -->
-    <button id="gitHub"
-    class="flex items-center justify-center w-full max-w-xs p-3 bg-white text-black rounded-md gap-x-2 text-sm font-medium border border-gray-300 hover:border-gray-500 focus:outline-none focus:border-gray-500 mb-4"
-    >
-    <img
-    src="https://github.com/favicon.ico"
-    alt="Github logo"
-    class="w-5 h-5"
-    />
-    Sign in with GitHub
-</button>
-</div>
   
-  <h2 class="text-white font-bold text-sm text-center mt-12">
+  <div class="flex flex-col md:flex-row md:gap-4">
+    <button id="google-sign" class="flex items-center justify-center w-full max-w-xs p-3 bg-white text-black rounded-md gap-x-2 text-sm font-medium border border-gray-300 hover:border-gray-500 focus:outline-none focus:border-gray-500 mb-4 button">
+      <img src="https://google.com/favicon.ico" alt="Google logo" class="w-5 h-5"/>
+      Sign in with Google
+    </button>
+
+    <button id="gitHub" class="flex items-center justify-center w-full max-w-xs p-3 bg-white text-black rounded-md gap-x-2 text-sm font-medium border border-gray-300 hover:border-gray-500 focus:outline-none focus:border-gray-500 mb-4 button">
+      <img src="https://github.com/favicon.ico" alt="Github logo" class="w-5 h-5"/>
+      Sign in with GitHub
+    </button>
+  </div>
+  
+  <h2 class="text-white font-bold text-sm text-center mt-12 heading">
     Already have an account? <span class="text-green-400">Log in</span>
   </h2>
   
-  <!-- hitwebcounter Code START -->
+  <!-- Visitors Counter -->
   <br>
-  
-  <div class="visitors">
-    <!-- hitwebcounter Code START -->
+  <div class="visitors heading">
     <a href="https://www.hitwebcounter.com" target="_blank">
-    
-        <h4 class="visitor-heading">Total Visitors</h4>
-        <img class="counter" src="https://hitwebcounter.com/counter/counter.php?page=16788644&style=0006&nbdigits=5&type=page&initCount=0" title="Counter Widget" Alt="Visit counter For Websites"   border="0" />
+      <h4 class="visitor-heading text-white text-sm text-center">Total Visitors</h4>
+      <img class="counter" src="https://hitwebcounter.com/counter/counter.php?page=16788644&style=0006&nbdigits=5&type=page&initCount=0" title="Counter Widget" Alt="Visit counter For Websites" border="0" />
     </a>
-</div>
-
-
+  </div>
 </body>
 </html>
